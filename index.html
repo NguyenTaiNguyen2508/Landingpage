@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Test.It - hệ thống hỗ trợ realtime trading, backtest chiến lược và AI Research."
+    />
+    <title>Test.It</title>
+    <script>
+      document.documentElement.classList.add("js");
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./styles.css" />
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
+    <script src="./app.js" defer></script>
+  </head>
+  <body>
+    <header class="site-header" aria-label="Điều hướng chính">
+      <a class="brand" href="#top" aria-label="Test.It">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span>Test.It</span>
+      </a>
+      <nav class="main-nav" aria-label="Nội dung">
+        <a href="#flow">Realtime</a>
+        <a href="#backtest">Backtest</a>
+        <a href="#ai-research">AI Research</a>
+        <a href="#connect">Kết nối</a>
+      </nav>
+      <a
+        class="header-cta"
+        href="https://drive.google.com/drive/folders/1t51CWXzwToFCee7DxN9S__ElGJalc30z?usp=sharing"
+        data-download-trigger
+      >
+        <i data-lucide="download"></i>
+        <span>Download</span>
+      </a>
+    </header>
+
+    <main id="top">
+      <section class="hero" aria-labelledby="hero-title">
+        <canvas id="heroCanvas" class="hero-canvas" aria-hidden="true"></canvas>
+        <div class="hero-content reveal">
+          <h1 id="hero-title">Test.It</h1>
+          <p class="hero-lead">
+            Từ backtest chiến lược đến realtime đi lệnh, tất cả nằm trong một workflow vận hành.
+          </p>
+          <div class="typed-line" aria-live="polite">
+            <span id="typedWord">Realtime trading</span>
+            <i></i>
+          </div>
+          <div class="hero-actions">
+            <a
+              class="primary-action"
+              href="https://drive.google.com/drive/folders/1t51CWXzwToFCee7DxN9S__ElGJalc30z?usp=sharing"
+              data-download-trigger
+            >
+              <i data-lucide="download-cloud"></i>
+              <span>Tải Test.It</span>
+            </a>
+            <a class="secondary-action" href="#flow">
+              <i data-lucide="activity"></i>
+              <span>Xem hệ thống</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section id="flow" class="flow-section" aria-labelledby="flow-title">
+        <div class="section-title reveal">
+          <h2 id="flow-title">Từ tick đến lệnh.</h2>
+          <p>Luồng realtime được thiết kế để dữ liệu, tín hiệu, guard và broker đi qua cùng một pipeline.</p>
+        </div>
+
+        <div class="flow-visual reveal" data-flow-stage>
+          <svg class="flow-svg" viewBox="0 0 1000 420" preserveAspectRatio="none" aria-hidden="true">
+            <path
+              id="flowPath"
+              d="M86 210 C210 70 312 70 420 210 C528 350 648 350 760 210 C840 112 910 126 950 188"
+            ></path>
+            <circle r="8" class="flow-pulse">
+              <animateMotion dur="5.5s" repeatCount="indefinite" rotate="auto">
+                <mpath href="#flowPath"></mpath>
+              </animateMotion>
+            </circle>
+          </svg>
+
+          <article class="flow-node node-feed is-active" data-flow-step>
+            <i data-lucide="radio-tower"></i>
+            <span>DNSE / SSI</span>
+            <strong>Dữ liệu sống</strong>
+          </article>
+          <article class="flow-node node-candle" data-flow-step>
+            <i data-lucide="candlestick-chart"></i>
+            <span>Realtime candle</span>
+            <strong>Ghép nến</strong>
+          </article>
+          <article class="flow-node node-signal" data-flow-step>
+            <i data-lucide="sparkles"></i>
+            <span>Strategy</span>
+            <strong>Tín hiệu</strong>
+          </article>
+          <article class="flow-node node-guard" data-flow-step>
+            <i data-lucide="shield-check"></i>
+            <span>Guard</span>
+            <strong>Kiểm soát lệnh</strong>
+          </article>
+          <article class="flow-node node-broker" data-flow-step>
+            <i data-lucide="send"></i>
+            <span>Broker</span>
+            <strong>Đi lệnh</strong>
+          </article>
+        </div>
+      </section>
+
+      <section class="suite-section" aria-labelledby="suite-title">
+        <div class="section-title reveal">
+          <h2 id="suite-title">Trọn vòng đời chiến lược.</h2>
+        </div>
+
+        <div class="suite-grid">
+          <article class="suite-panel realtime-panel reveal">
+            <div class="panel-copy">
+              <h3>Realtime</h3>
+              <p>Theo dõi feed DNSE/SSI, bật tài khoản live và nhận thông báo khi tín hiệu được xử lý.</p>
+            </div>
+            <div class="mini-terminal" aria-hidden="true">
+              <span>VN30F1M</span>
+              <strong>Long signal</strong>
+              <em>Guard pass</em>
+            </div>
+          </article>
+
+          <article id="backtest" class="suite-panel backtest-panel reveal">
+            <div class="panel-copy">
+              <h3>Backtest</h3>
+              <p>Chạy thử chiến lược trên dữ liệu lịch sử, xem equity, drawdown, trades và các chỉ số vận hành.</p>
+            </div>
+            <div class="equity-preview" aria-hidden="true">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+              <svg viewBox="0 0 360 140">
+                <path d="M0 106 L48 96 L92 102 L138 72 L182 78 L226 50 L270 58 L316 32 L360 38"></path>
+              </svg>
+            </div>
+          </article>
+
+          <article id="ai-research" class="suite-panel ai-panel reveal">
+            <div class="panel-copy">
+              <h3>AI Research</h3>
+              <p>AI đề xuất candidate, còn engine kiểm chứng bằng backtest, repaint audit, Walk-Forward và PBO.</p>
+            </div>
+            <div class="research-preview" aria-hidden="true">
+              <div>Ý tưởng</div>
+              <div>Candidate</div>
+              <div>Verified</div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="connect" class="connect-section" aria-labelledby="connect-title">
+        <div class="connect-copy reveal">
+          <h2 id="connect-title">Kết nối sẵn sàng.</h2>
+        </div>
+        <div class="connect-strip reveal" aria-label="Các kết nối đang có">
+          <span>DNSE</span>
+          <span>SSI</span>
+          <span>Entrade</span>
+          <span>TCBS</span>
+          <span>Telegram</span>
+          <span>Zalo</span>
+          <span>AI Gateway</span>
+          <span aria-hidden="true">DNSE</span>
+          <span aria-hidden="true">SSI</span>
+          <span aria-hidden="true">Entrade</span>
+          <span aria-hidden="true">TCBS</span>
+          <span aria-hidden="true">Telegram</span>
+          <span aria-hidden="true">Zalo</span>
+          <span aria-hidden="true">AI Gateway</span>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <span>Test.It</span>
+      <span>Phần mềm hỗ trợ vận hành giao dịch, không cam kết lợi nhuận.</span>
+    </footer>
+  </body>
+</html>
