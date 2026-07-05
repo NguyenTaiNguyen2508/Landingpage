@@ -4,6 +4,12 @@ const DOWNLOAD_URL =
 const downloadTargets = document.querySelectorAll("[data-download-trigger]");
 const typedWord = document.querySelector("#typedWord");
 const flowSteps = Array.from(document.querySelectorAll("[data-flow-step]"));
+const flowStage = document.querySelector("[data-flow-stage]");
+const flowPath = document.querySelector("[data-flow-path]");
+const flowDot = document.querySelector("[data-flow-dot]");
+const connectCards = Array.from(document.querySelectorAll(".connect-strip span"));
+const FLOW_INTERVAL_MS = 1100;
+const FLOW_LOOP_MS = FLOW_INTERVAL_MS * Math.max(flowSteps.length, 1);
 
 function openDownload(event) {
   event?.preventDefault();
@@ -54,13 +60,76 @@ function typeLoop() {
 typeLoop();
 
 let flowIndex = 0;
+let flowStartTime = 0;
+let flowAnimationFrame = 0;
+let flowPathLength = 0;
+
+function renderFlowState(activeIndex) {
+  flowSteps.forEach((step, index) => {
+    step.classList.toggle("is-active", index === activeIndex);
+    step.classList.toggle("is-complete", index < activeIndex);
+  });
+}
+
+function placeFlowDot(progress) {
+  if (!flowDot || !flowPath || !flowStage || !flowPathLength) return;
+
+  const curve = flowPath.closest("svg");
+  const curveRect = curve.getBoundingClientRect();
+  const stageRect = flowStage.getBoundingClientRect();
+  const viewBox = curve.viewBox.baseVal;
+
+  if (!curveRect.width || !curveRect.height) return;
+
+  const point = flowPath.getPointAtLength(flowPathLength * progress);
+  const x = curveRect.left - stageRect.left + ((point.x - viewBox.x) / viewBox.width) * curveRect.width;
+  const y = curveRect.top - stageRect.top + ((point.y - viewBox.y) / viewBox.height) * curveRect.height;
+
+  flowDot.style.setProperty("--dot-x", `${Math.round(x)}px`);
+  flowDot.style.setProperty("--dot-y", `${Math.round(y)}px`);
+}
+
+function renderFlowFrame(timestamp) {
+  if (!flowStartTime) flowStartTime = timestamp;
+
+  const progress = ((timestamp - flowStartTime) % FLOW_LOOP_MS) / FLOW_LOOP_MS;
+  const activeIndex = Math.min(flowSteps.length - 1, Math.floor(progress * flowSteps.length));
+
+  if (activeIndex !== flowIndex) {
+    flowIndex = activeIndex;
+    renderFlowState(flowIndex);
+  }
+
+  placeFlowDot(progress);
+  flowAnimationFrame = window.requestAnimationFrame(renderFlowFrame);
+}
+
+function startFlowMotion() {
+  if (!flowPath || !flowSteps.length) return;
+
+  window.cancelAnimationFrame(flowAnimationFrame);
+  flowPathLength = flowPath.getTotalLength();
+  flowStartTime = 0;
+  flowIndex = 0;
+  renderFlowState(flowIndex);
+  placeFlowDot(0);
+  flowAnimationFrame = window.requestAnimationFrame(renderFlowFrame);
+}
+
+startFlowMotion();
+window.addEventListener("load", startFlowMotion);
+window.addEventListener("resize", () => placeFlowDot(((performance.now() - flowStartTime) % FLOW_LOOP_MS) / FLOW_LOOP_MS));
+
+let connectIndex = 0;
+
+connectCards[0]?.classList.add("is-highlight");
 
 setInterval(() => {
-  if (!flowSteps.length) return;
-  flowSteps[flowIndex]?.classList.remove("is-active");
-  flowIndex = (flowIndex + 1) % flowSteps.length;
-  flowSteps[flowIndex]?.classList.add("is-active");
-}, 1100);
+  if (!connectCards.length) return;
+  connectCards[connectIndex]?.classList.remove("is-highlight");
+  connectIndex = (connectIndex + 1) % connectCards.length;
+  connectCards[connectIndex]?.classList.add("is-highlight");
+}, 1250);
 
 const revealObserver = new IntersectionObserver(
   (entries) => {
