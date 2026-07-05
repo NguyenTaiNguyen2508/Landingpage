@@ -14,7 +14,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Orbitron:wght@700&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="./styles.css" />
@@ -24,14 +24,19 @@
   <body>
     <header class="site-header" aria-label="Điều hướng chính">
       <a class="brand" href="#top" aria-label="Test.It">
-        <span class="brand-mark" aria-hidden="true"></span>
-        <span>Test.It</span>
+        <span class="brand-icon" aria-hidden="true">
+          <svg class="testit-mark-svg" viewBox="0 0 32 32" focusable="false">
+            <rect x="1.5" y="1.5" width="29" height="29" rx="8" fill="#030303" stroke="#FFFFFF" stroke-opacity="0.78" stroke-width="1.4" />
+            <path d="M8.5 8.6H23.5V11.7H17.7V23.4H14.3V11.7H8.5V8.6Z" fill="#FFFFFF" />
+          </svg>
+        </span>
+        <span class="brand-wordmark">est.it</span>
       </a>
       <nav class="main-nav" aria-label="Nội dung">
         <a href="#flow">Realtime</a>
-        <a href="#backtest">Backtest</a>
-        <a href="#ai-research">AI Research</a>
+        <a href="#system-structure">Cấu trúc hệ thống</a>
         <a href="#connect">Kết nối</a>
+        <a href="#contact">Liên hệ</a>
       </nav>
       <a
         class="header-cta"
@@ -49,7 +54,7 @@
         <div class="hero-content reveal">
           <h1 id="hero-title">Test.It</h1>
           <p class="hero-lead">
-            Từ backtest chiến lược đến realtime đi lệnh, tất cả nằm trong một workflow vận hành.
+            Backtest, AI Research và realtime đi lệnh trong một workflow.
           </p>
           <div class="typed-line" aria-live="polite">
             <span id="typedWord">Realtime trading</span>
@@ -66,7 +71,7 @@
             </a>
             <a class="secondary-action" href="#flow">
               <i data-lucide="activity"></i>
-              <span>Xem hệ thống</span>
+              <span>Giới thiệu</span>
             </a>
           </div>
         </div>
@@ -74,32 +79,29 @@
 
       <section id="flow" class="flow-section" aria-labelledby="flow-title">
         <div class="section-title reveal">
-          <h2 id="flow-title">Từ tick đến lệnh.</h2>
-          <p>Luồng realtime được thiết kế để dữ liệu, tín hiệu, guard và broker đi qua cùng một pipeline.</p>
+          <h2 id="flow-title">Từ tick đến lệnh</h2>
+          <p>Luồng realtime được thiết kế nhất quán, an toàn.</p>
         </div>
 
         <div class="flow-visual reveal" data-flow-stage>
-          <svg class="flow-svg" viewBox="0 0 1000 420" preserveAspectRatio="none" aria-hidden="true">
+          <svg class="flow-curve" viewBox="0 0 1440 520" preserveAspectRatio="none" aria-hidden="true">
             <path
-              id="flowPath"
-              d="M86 210 C210 70 312 70 420 210 C528 350 648 350 760 210 C840 112 910 126 950 188"
+              class="flow-curve-path"
+              data-flow-path
+              d="M80 260 C185 80 295 80 400 260 C505 440 615 440 720 260 C825 80 935 80 1040 260 C1132 438 1220 438 1310 392"
             ></path>
-            <circle r="8" class="flow-pulse">
-              <animateMotion dur="5.5s" repeatCount="indefinite" rotate="auto">
-                <mpath href="#flowPath"></mpath>
-              </animateMotion>
-            </circle>
           </svg>
+          <span class="flow-dot" data-flow-dot aria-hidden="true"></span>
 
           <article class="flow-node node-feed is-active" data-flow-step>
             <i data-lucide="radio-tower"></i>
-            <span>DNSE / SSI</span>
-            <strong>Dữ liệu sống</strong>
+            <span>Data live</span>
+            <strong>Miễn phí</strong>
           </article>
           <article class="flow-node node-candle" data-flow-step>
             <i data-lucide="candlestick-chart"></i>
             <span>Realtime candle</span>
-            <strong>Ghép nến</strong>
+            <strong>Tạo nến</strong>
           </article>
           <article class="flow-node node-signal" data-flow-step>
             <i data-lucide="sparkles"></i>
@@ -116,77 +118,94 @@
             <span>Broker</span>
             <strong>Đi lệnh</strong>
           </article>
+          <article class="flow-node node-notify" data-flow-step>
+            <i data-lucide="clipboard-check"></i>
+            <span>Thông báo</span>
+            <strong>Kiểm tra khớp lệnh</strong>
+          </article>
         </div>
       </section>
 
-      <section class="suite-section" aria-labelledby="suite-title">
+      <section id="system-structure" class="suite-section" aria-labelledby="suite-title">
         <div class="section-title reveal">
-          <h2 id="suite-title">Trọn vòng đời chiến lược.</h2>
+          <h2 id="suite-title">Trọn vòng đời chiến lược</h2>
         </div>
 
-        <div class="suite-grid">
-          <article class="suite-panel realtime-panel reveal">
-            <div class="panel-copy">
-              <h3>Realtime</h3>
-              <p>Theo dõi feed DNSE/SSI, bật tài khoản live và nhận thông báo khi tín hiệu được xử lý.</p>
-            </div>
-            <div class="mini-terminal" aria-hidden="true">
-              <span>VN30F1M</span>
-              <strong>Long signal</strong>
-              <em>Guard pass</em>
-            </div>
+        <div class="lifecycle-orbit reveal" aria-label="Vòng đời chiến lược">
+          <svg class="cycle-svg" viewBox="0 0 1000 620" aria-hidden="true">
+            <defs>
+              <marker id="cycleArrow" markerWidth="12" markerHeight="12" refX="9" refY="6" orient="auto">
+                <path d="M2 2 L10 6 L2 10 Z"></path>
+              </marker>
+            </defs>
+            <path class="cycle-link link-br" d="M314 174 C486 86 672 86 810 174"></path>
+            <path class="cycle-link link-ra" d="M810 324 C746 482 586 544 502 490"></path>
+            <path class="cycle-link link-ab" d="M418 490 C250 528 136 426 190 324"></path>
+          </svg>
+          <span class="cycle-label label-br">Backtest -> Realtime</span>
+          <span class="cycle-label label-ra">Realtime -> AI Research</span>
+          <span class="cycle-label label-ab">AI Research -> Backtest</span>
+
+          <article id="backtest" class="orbit-card orbit-backtest">
+            <i data-lucide="line-chart"></i>
+            <h3>Backtest</h3>
+            <p>Kiểm tra chiến lược trên dữ liệu lịch sử bao gồm cả optimize, walk forward OOS và kiểm tra mức độ overfit của chiến lược.</p>
           </article>
 
-          <article id="backtest" class="suite-panel backtest-panel reveal">
-            <div class="panel-copy">
-              <h3>Backtest</h3>
-              <p>Chạy thử chiến lược trên dữ liệu lịch sử, xem equity, drawdown, trades và các chỉ số vận hành.</p>
-            </div>
-            <div class="equity-preview" aria-hidden="true">
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-              <span></span>
-              <svg viewBox="0 0 360 140">
-                <path d="M0 106 L48 96 L92 102 L138 72 L182 78 L226 50 L270 58 L316 32 L360 38"></path>
-              </svg>
-            </div>
+          <article class="orbit-card orbit-realtime">
+            <i data-lucide="activity"></i>
+            <h3>Realtime</h3>
+            <p>Đưa chiến lược đã backtest và research vào thực chiến.</p>
           </article>
 
-          <article id="ai-research" class="suite-panel ai-panel reveal">
-            <div class="panel-copy">
-              <h3>AI Research</h3>
-              <p>AI đề xuất candidate, còn engine kiểm chứng bằng backtest, repaint audit, Walk-Forward và PBO.</p>
-            </div>
-            <div class="research-preview" aria-hidden="true">
-              <div>Ý tưởng</div>
-              <div>Candidate</div>
-              <div>Verified</div>
-            </div>
+          <article id="ai-research" class="orbit-card orbit-ai">
+            <i data-lucide="brain-circuit"></i>
+            <h3>AI Research</h3>
+            <p>Sử dụng AI cùng các mô hình Machine Learning để tìm kiếm và phát triển chiến lược tối ưu.</p>
           </article>
         </div>
       </section>
 
       <section id="connect" class="connect-section" aria-labelledby="connect-title">
         <div class="connect-copy reveal">
-          <h2 id="connect-title">Kết nối sẵn sàng.</h2>
+          <h2 id="connect-title">Kết nối sẵn sàng</h2>
         </div>
         <div class="connect-strip reveal" aria-label="Các kết nối đang có">
+          <span class="is-highlight">ENTRADE DEMO</span>
+          <span>ENTRADE</span>
           <span>DNSE</span>
-          <span>SSI</span>
-          <span>Entrade</span>
           <span>TCBS</span>
-          <span>Telegram</span>
-          <span>Zalo</span>
-          <span>AI Gateway</span>
-          <span aria-hidden="true">DNSE</span>
-          <span aria-hidden="true">SSI</span>
-          <span aria-hidden="true">Entrade</span>
-          <span aria-hidden="true">TCBS</span>
-          <span aria-hidden="true">Telegram</span>
-          <span aria-hidden="true">Zalo</span>
-          <span aria-hidden="true">AI Gateway</span>
+          <span>SSI</span>
+          <span>VPS</span>
+        </div>
+      </section>
+
+      <section id="contact" class="contact-section" aria-labelledby="contact-title">
+        <div class="contact-shell reveal">
+          <div class="contact-copy">
+            <span>Liên hệ</span>
+            <h2 id="contact-title">Triển khai Test.It cùng workflow của bạn</h2>
+            <p>
+              Cần hỗ trợ cài đặt, chạy gateway trên VPS hoặc cấu hình realtime đi lệnh?
+              Nhắn Zalo để trao đổi nhanh theo hệ thống bạn đang vận hành.
+            </p>
+          </div>
+          <div class="contact-actions" aria-label="Kênh liên hệ Zalo">
+            <a class="contact-link" href="https://zalo.me/0989746792" target="_blank" rel="noopener">
+              <i data-lucide="message-circle"></i>
+              <span>
+                <small>Zalo</small>
+                <strong>0989746792</strong>
+              </span>
+            </a>
+            <a class="contact-link" href="https://zalo.me/0374685088" target="_blank" rel="noopener">
+              <i data-lucide="message-circle"></i>
+              <span>
+                <small>Zalo</small>
+                <strong>0374685088</strong>
+              </span>
+            </a>
+          </div>
         </div>
       </section>
     </main>
