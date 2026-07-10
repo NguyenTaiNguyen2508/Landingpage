@@ -175,7 +175,7 @@ function drawHero() {
   const gap = width / (points - 1);
 
   ctx.lineWidth = 2;
-  ctx.strokeStyle = "rgba(0, 166, 107, 0.34)";
+  ctx.strokeStyle = "rgba(215, 161, 46, 0.26)";
   ctx.beginPath();
   for (let i = 0; i < points; i += 1) {
     const x = i * gap;
@@ -194,7 +194,7 @@ function drawHero() {
     const low = y + 22 + ((i + 2) % 4) * 4;
     const open = y + Math.sin(i + frame * 0.022) * 14;
     const close = y - Math.cos(i * 0.9 + frame * 0.018) * 14;
-    const color = close < open ? "#00a66b" : "#e64a4a";
+    const color = close < open ? "#34d399" : "#fb7185";
 
     ctx.strokeStyle = color;
     ctx.lineWidth = 1.4;
@@ -208,7 +208,7 @@ function drawHero() {
   }
 
   const pulseX = ((frame * 2.2) % (width + 180)) - 90;
-  ctx.strokeStyle = "rgba(61, 100, 255, 0.24)";
+  ctx.strokeStyle = "rgba(240, 185, 11, 0.2)";
   ctx.lineWidth = 1;
   ctx.beginPath();
   ctx.moveTo(pulseX, height * 0.2);
