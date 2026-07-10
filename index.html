@@ -8,13 +8,14 @@
       content="Test.It - hệ thống hỗ trợ realtime trading, backtest chiến lược và AI Research."
     />
     <title>Test.It</title>
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
     <script>
       document.documentElement.classList.add("js");
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Orbitron:wght@700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap"
       rel="stylesheet"
     />
     <link rel="stylesheet" href="./styles.css" />
@@ -35,6 +36,7 @@
       <nav class="main-nav" aria-label="Nội dung">
         <a href="#flow">Realtime</a>
         <a href="#system-structure">Cấu trúc hệ thống</a>
+        <a href="#ai-research-deep">AI Research</a>
         <a href="#connect">Kết nối</a>
         <a href="#contact">Liên hệ</a>
       </nav>
@@ -54,7 +56,8 @@
         <div class="hero-content reveal">
           <h1 id="hero-title">Test.It</h1>
           <p class="hero-lead">
-            Backtest, AI Research và realtime đi lệnh trong một workflow.
+            Tất cả những thứ bạn cần trong 1 app duy nhất, từ xây dựng chiến lược
+            đến vận hành chiến lược. Độc quyền cho thị trường chứng khoán phái sinh Việt Nam.
           </p>
           <div class="typed-line" aria-live="polite">
             <span id="typedWord">Realtime trading</span>
@@ -73,6 +76,39 @@
               <i data-lucide="activity"></i>
               <span>Giới thiệu</span>
             </a>
+          </div>
+        </div>
+      </section>
+
+      <section id="ownership" class="ownership-section" aria-labelledby="ownership-title">
+        <div class="ownership-shell reveal">
+          <div class="ownership-copy">
+            <span>Chủ quyền dữ liệu</span>
+            <h2 id="ownership-title">Chiến lược và dữ liệu nằm trong tay bạn</h2>
+            <p>
+              Test.It được triển khai trên VPS hoặc máy chủ do bạn kiểm soát. Mã chiến lược,
+              tham số, lịch sử backtest, phiên AI Research và cấu hình realtime đều ở trong
+              môi trường riêng của bạn, bảo vệ bí quyết giao dịch và giúp bạn chủ động toàn bộ
+              vòng đời vận hành.
+            </p>
+          </div>
+
+          <div class="ownership-grid" aria-label="Lợi ích khi triển khai trên máy chủ riêng">
+            <article>
+              <i data-lucide="server-cog"></i>
+              <strong>Máy chủ của bạn</strong>
+              <small>Chủ động nơi cài đặt, quyền truy cập, backup và cách vận hành hằng ngày.</small>
+            </article>
+            <article>
+              <i data-lucide="fingerprint"></i>
+              <strong>Chiến lược không rời hệ thống</strong>
+              <small>AFL/Visual, tham số tối ưu và kết quả nghiên cứu được xử lý trong môi trường riêng.</small>
+            </article>
+            <article>
+              <i data-lucide="database-zap"></i>
+              <strong>Data miễn phí trọn đời</strong>
+              <small>Nguồn dữ liệu live được thiết kế để bạn chủ động kết nối và sử dụng lâu dài, không phụ thuộc chi phí thuê data định kỳ.</small>
+            </article>
           </div>
         </div>
       </section>
@@ -163,6 +199,69 @@
             <h3>AI Research</h3>
             <p>Sử dụng AI cùng các mô hình Machine Learning để tìm kiếm và phát triển chiến lược tối ưu.</p>
           </article>
+        </div>
+      </section>
+
+      <section id="ai-research-deep" class="ai-research-section" aria-labelledby="ai-research-title">
+        <div class="ai-research-shell reveal">
+          <div class="ai-research-copy">
+            <span>AI Research</span>
+            <h2 id="ai-research-title">Tìm chiến lược tốt hơn bằng AI Agent</h2>
+            <p>
+              Test.It Deep Mind biến điều không thể trở thành có thể!
+            </p>
+            <div class="research-points" aria-label="Lợi ích AI Research">
+              <article>
+                <i data-lucide="scan-search"></i>
+                <strong>Hiểu chiến lược gốc</strong>
+                <small>Map entry, exit, filter, risk, thời gian giao dịch và các vùng nhạy cảm.</small>
+              </article>
+              <article>
+                <i data-lucide="flask-conical"></i>
+                <strong>Thử giả thuyết có kiểm soát</strong>
+                <small>Đề xuất branch hoặc tham số, rồi để engine local backtest/optimize thay vì đoán.</small>
+              </article>
+              <article>
+                <i data-lucide="shield-alert"></i>
+                <strong>Giảm rủi ro overfit</strong>
+                <small>Hỗ trợ refine, ablation, Walk-Forward/OOS và PBO sau khi có candidate đáng chú ý.</small>
+              </article>
+            </div>
+          </div>
+
+          <div class="research-lab" aria-label="Luồng làm việc AI Research">
+            <div class="research-card research-card-main">
+              <i data-lucide="brain-circuit"></i>
+              <span>Test.It Deep Mind</span>
+              <strong>Vòng nghiên cứu</strong>
+            </div>
+            <div class="research-rail">
+              <article>
+                <span>01</span>
+                <strong>Mốc gốc</strong>
+                <small>So sánh với backtest hiện tại</small>
+              </article>
+              <article>
+                <span>02</span>
+                <strong>Phương án</strong>
+                <small>Sửa logic hoặc tinh chỉnh tham số</small>
+              </article>
+              <article>
+                <span>03</span>
+                <strong>Lệnh thua</strong>
+                <small>Tìm mẫu xuất hiện nhiều trong các lệnh kém hiệu quả</small>
+              </article>
+              <article>
+                <span>04</span>
+                <strong>Hậu kiểm</strong>
+                <small>WF/OOS, PBO và kiểm tra repaint</small>
+              </article>
+            </div>
+            <div class="research-note">
+              <i data-lucide="lock-keyhole"></i>
+              <span>Dữ liệu giá gốc và backtest engine vẫn chạy local trong Test.It.</span>
+            </div>
+          </div>
         </div>
       </section>
 
