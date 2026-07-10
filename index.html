@@ -34,9 +34,10 @@
         <span class="brand-wordmark">est.it</span>
       </a>
       <nav class="main-nav" aria-label="Nội dung">
-        <a href="#flow">Realtime</a>
-        <a href="#system-structure">Cấu trúc hệ thống</a>
         <a href="#ai-research-deep">AI Research</a>
+        <a href="#backtest-lab">Backtest</a>
+        <a href="#live-trading">Realtime</a>
+        <a href="#system-structure">Workflow</a>
         <a href="#connect">Kết nối</a>
         <a href="#contact">Liên hệ</a>
       </nav>
@@ -72,7 +73,7 @@
               <i data-lucide="download-cloud"></i>
               <span>Tải Test.It</span>
             </a>
-            <a class="secondary-action" href="#flow">
+            <a class="secondary-action" href="#ownership">
               <i data-lucide="activity"></i>
               <span>Giới thiệu</span>
             </a>
@@ -110,95 +111,6 @@
               <small>Nguồn dữ liệu live được thiết kế để bạn chủ động kết nối và sử dụng lâu dài, không phụ thuộc chi phí thuê data định kỳ.</small>
             </article>
           </div>
-        </div>
-      </section>
-
-      <section id="flow" class="flow-section" aria-labelledby="flow-title">
-        <div class="section-title reveal">
-          <h2 id="flow-title">Từ tick đến lệnh</h2>
-          <p>Luồng realtime được thiết kế nhất quán, an toàn.</p>
-        </div>
-
-        <div class="flow-visual reveal" data-flow-stage>
-          <svg class="flow-curve" viewBox="0 0 1440 520" preserveAspectRatio="none" aria-hidden="true">
-            <path
-              class="flow-curve-path"
-              data-flow-path
-              d="M80 260 C185 80 295 80 400 260 C505 440 615 440 720 260 C825 80 935 80 1040 260 C1132 438 1220 438 1310 392"
-            ></path>
-          </svg>
-          <span class="flow-dot" data-flow-dot aria-hidden="true"></span>
-
-          <article class="flow-node node-feed is-active" data-flow-step>
-            <i data-lucide="radio-tower"></i>
-            <span>Data live</span>
-            <strong>Miễn phí</strong>
-          </article>
-          <article class="flow-node node-candle" data-flow-step>
-            <i data-lucide="candlestick-chart"></i>
-            <span>Realtime candle</span>
-            <strong>Tạo nến</strong>
-          </article>
-          <article class="flow-node node-signal" data-flow-step>
-            <i data-lucide="sparkles"></i>
-            <span>Strategy</span>
-            <strong>Tín hiệu</strong>
-          </article>
-          <article class="flow-node node-guard" data-flow-step>
-            <i data-lucide="shield-check"></i>
-            <span>Guard</span>
-            <strong>Kiểm soát lệnh</strong>
-          </article>
-          <article class="flow-node node-broker" data-flow-step>
-            <i data-lucide="send"></i>
-            <span>Broker</span>
-            <strong>Đi lệnh</strong>
-          </article>
-          <article class="flow-node node-notify" data-flow-step>
-            <i data-lucide="clipboard-check"></i>
-            <span>Thông báo</span>
-            <strong>Kiểm tra khớp lệnh</strong>
-          </article>
-        </div>
-      </section>
-
-      <section id="system-structure" class="suite-section" aria-labelledby="suite-title">
-        <div class="section-title reveal">
-          <h2 id="suite-title">Trọn vòng đời chiến lược</h2>
-        </div>
-
-        <div class="lifecycle-orbit reveal" aria-label="Vòng đời chiến lược">
-          <svg class="cycle-svg" viewBox="0 0 1000 620" aria-hidden="true">
-            <defs>
-              <marker id="cycleArrow" markerWidth="12" markerHeight="12" refX="9" refY="6" orient="auto">
-                <path d="M2 2 L10 6 L2 10 Z"></path>
-              </marker>
-            </defs>
-            <path class="cycle-link link-br" d="M314 174 C486 86 672 86 810 174"></path>
-            <path class="cycle-link link-ra" d="M810 324 C746 482 586 544 502 490"></path>
-            <path class="cycle-link link-ab" d="M418 490 C250 528 136 426 190 324"></path>
-          </svg>
-          <span class="cycle-label label-br">Backtest -> Realtime</span>
-          <span class="cycle-label label-ra">Realtime -> AI Research</span>
-          <span class="cycle-label label-ab">AI Research -> Backtest</span>
-
-          <article id="backtest" class="orbit-card orbit-backtest">
-            <i data-lucide="line-chart"></i>
-            <h3>Backtest</h3>
-            <p>Kiểm tra chiến lược trên dữ liệu lịch sử bao gồm cả optimize, walk forward OOS và kiểm tra mức độ overfit của chiến lược.</p>
-          </article>
-
-          <article class="orbit-card orbit-realtime">
-            <i data-lucide="activity"></i>
-            <h3>Realtime</h3>
-            <p>Đưa chiến lược đã backtest và research vào thực chiến.</p>
-          </article>
-
-          <article id="ai-research" class="orbit-card orbit-ai">
-            <i data-lucide="brain-circuit"></i>
-            <h3>AI Research</h3>
-            <p>Sử dụng AI cùng các mô hình Machine Learning để tìm kiếm và phát triển chiến lược tối ưu.</p>
-          </article>
         </div>
       </section>
 
@@ -265,6 +177,161 @@
         </div>
       </section>
 
+      <section id="backtest-lab" class="capability-section backtest-lab-section" aria-labelledby="backtest-lab-title">
+        <div class="capability-intro reveal">
+          <span>Backtest Lab</span>
+          <h2 id="backtest-lab-title">Kiểm chứng chiến lược trước khi vào thị trường</h2>
+          <p>
+            Test.It chạy AFL, Visual, PineScript và Python trên dữ liệu lịch sử, giữ warmup
+            chỉ báo, mô phỏng phí, stop, trailing, giờ mở/đóng lệnh và trả về đầy đủ equity,
+            drawdown, trades để bạn biết chiến lược đang mạnh ở đâu, yếu ở đâu.
+          </p>
+        </div>
+
+        <div class="capability-grid reveal" aria-label="Năng lực Backtest Lab">
+          <article class="capability-card">
+            <i data-lucide="line-chart"></i>
+            <span>01</span>
+            <h3>Backtest đa ngôn ngữ</h3>
+            <p>AFL, Visual, PineScript và Python dùng chung engine kiểm chứng, hỗ trợ long/short, phí giao dịch, SL/TP, trailing và time rules.</p>
+          </article>
+          <article class="capability-card">
+            <i data-lucide="sliders-horizontal"></i>
+            <span>02</span>
+            <h3>Optimize và Walk-Forward</h3>
+            <p>Tối ưu tham số theo mục tiêu, sau đó kiểm tra rolling hoặc expanding OOS để tránh chọn một bộ tham số chỉ đẹp trên quá khứ.</p>
+          </article>
+          <article class="capability-card">
+            <i data-lucide="shield-check"></i>
+            <span>03</span>
+            <h3>Repaint và PBO</h3>
+            <p>Kiểm tra lookahead/repaint, chạy PBO theo CSCV và đọc xác suất overfit trước khi đưa chiến lược sang realtime.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="live-trading" class="capability-section live-trading-section" aria-labelledby="live-trading-title">
+        <div class="capability-intro reveal">
+          <span>Đi lệnh thực chiến</span>
+          <h2 id="live-trading-title">Từ tín hiệu đến broker qua một lớp guard an toàn</h2>
+          <p>
+            Realtime engine nhận tick live, tạo nến đang mở, tính tín hiệu, lọc theo vị thế,
+            giờ giao dịch và trạng thái tài khoản trước khi phân phối lệnh đến broker.
+            Chart, marker, snapshot và thông báo luôn đi cùng một trạng thái vận hành.
+          </p>
+        </div>
+
+        <div class="capability-grid reveal" aria-label="Năng lực đi lệnh thực chiến">
+          <article class="capability-card">
+            <i data-lucide="radio-tower"></i>
+            <span>01</span>
+            <h3>Tick live và nến realtime</h3>
+            <p>Tick được fan-out đến từng session, nến đang mở cập nhật theo volume khớp thực tế và được đồng bộ lại với dữ liệu lịch sử khi cần.</p>
+          </article>
+          <article class="capability-card">
+            <i data-lucide="route"></i>
+            <span>02</span>
+            <h3>Guard trước khi gửi lệnh</h3>
+            <p>Pipeline chặn lệnh trùng, lọc tín hiệu theo position, entry time rules, pending stop và trạng thái cho phép dispatch.</p>
+          </article>
+          <article class="capability-card">
+            <i data-lucide="send"></i>
+            <span>03</span>
+            <h3>Broker, snapshot, thông báo</h3>
+            <p>Hỗ trợ Entrade Demo/Real, DNSE, TCBS, SSI, lưu live snapshot, theo dõi khớp lệnh và gửi Telegram/Zalo cho người vận hành.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="system-structure" class="suite-section" aria-labelledby="suite-title">
+        <div class="section-title reveal">
+          <h2 id="suite-title">Trọn vòng đời chiến lược</h2>
+        </div>
+
+        <div class="lifecycle-orbit reveal" aria-label="Vòng đời chiến lược">
+          <svg class="cycle-svg" viewBox="0 0 1000 620" aria-hidden="true">
+            <defs>
+              <marker id="cycleArrow" markerWidth="12" markerHeight="12" refX="9" refY="6" orient="auto">
+                <path d="M2 2 L10 6 L2 10 Z"></path>
+              </marker>
+            </defs>
+            <path class="cycle-link link-br" d="M314 174 C486 86 672 86 810 174"></path>
+            <path class="cycle-link link-ra" d="M810 324 C746 482 586 544 502 490"></path>
+            <path class="cycle-link link-ab" d="M418 490 C250 528 136 426 190 324"></path>
+          </svg>
+          <span class="cycle-label label-br">Backtest -> Realtime</span>
+          <span class="cycle-label label-ra">Realtime -> AI Research</span>
+          <span class="cycle-label label-ab">AI Research -> Backtest</span>
+
+          <article id="backtest" class="orbit-card orbit-backtest">
+            <i data-lucide="line-chart"></i>
+            <h3>Backtest</h3>
+            <p>Kiểm tra chiến lược trên dữ liệu lịch sử bao gồm cả optimize, walk forward OOS và kiểm tra mức độ overfit của chiến lược.</p>
+          </article>
+
+          <article class="orbit-card orbit-realtime">
+            <i data-lucide="activity"></i>
+            <h3>Realtime</h3>
+            <p>Đưa chiến lược đã backtest và research vào thực chiến.</p>
+          </article>
+
+          <article id="ai-research" class="orbit-card orbit-ai">
+            <i data-lucide="brain-circuit"></i>
+            <h3>AI Research</h3>
+            <p>Sử dụng AI cùng các mô hình Machine Learning để tìm kiếm và phát triển chiến lược tối ưu.</p>
+          </article>
+        </div>
+
+        <div id="flow" class="workflow-flow" aria-labelledby="flow-title">
+          <div class="section-title reveal">
+            <h2 id="flow-title">Từ tick đến lệnh</h2>
+            <p>Luồng realtime được thiết kế nhất quán, an toàn.</p>
+          </div>
+
+          <div class="flow-visual reveal" data-flow-stage>
+            <svg class="flow-curve" viewBox="0 0 1440 520" preserveAspectRatio="none" aria-hidden="true">
+              <path
+                class="flow-curve-path"
+                data-flow-path
+                d="M80 260 C185 80 295 80 400 260 C505 440 615 440 720 260 C825 80 935 80 1040 260 C1132 438 1220 438 1310 392"
+              ></path>
+            </svg>
+            <span class="flow-dot" data-flow-dot aria-hidden="true"></span>
+
+            <article class="flow-node node-feed is-active" data-flow-step>
+              <i data-lucide="radio-tower"></i>
+              <span>Data live</span>
+              <strong>Miễn phí</strong>
+            </article>
+            <article class="flow-node node-candle" data-flow-step>
+              <i data-lucide="candlestick-chart"></i>
+              <span>Realtime candle</span>
+              <strong>Tạo nến</strong>
+            </article>
+            <article class="flow-node node-signal" data-flow-step>
+              <i data-lucide="sparkles"></i>
+              <span>Strategy</span>
+              <strong>Tín hiệu</strong>
+            </article>
+            <article class="flow-node node-guard" data-flow-step>
+              <i data-lucide="shield-check"></i>
+              <span>Guard</span>
+              <strong>Kiểm soát lệnh</strong>
+            </article>
+            <article class="flow-node node-broker" data-flow-step>
+              <i data-lucide="send"></i>
+              <span>Broker</span>
+              <strong>Đi lệnh</strong>
+            </article>
+            <article class="flow-node node-notify" data-flow-step>
+              <i data-lucide="clipboard-check"></i>
+              <span>Thông báo</span>
+              <strong>Kiểm tra khớp lệnh</strong>
+            </article>
+          </div>
+        </div>
+      </section>
+
       <section id="connect" class="connect-section" aria-labelledby="connect-title">
         <div class="connect-copy reveal">
           <h2 id="connect-title">Kết nối sẵn sàng</h2>
@@ -283,7 +350,7 @@
         <div class="contact-shell reveal">
           <div class="contact-copy">
             <span>Liên hệ</span>
-            <h2 id="contact-title">Triển khai Test.It cùng workflow của bạn</h2>
+            <h2 id="contact-title">Triển khai Test.It cùng chiến lược của bạn</h2>
             <p>
               Cần hỗ trợ cài đặt, chạy gateway trên VPS hoặc cấu hình realtime đi lệnh?
               Nhắn Zalo để trao đổi nhanh theo hệ thống bạn đang vận hành.
