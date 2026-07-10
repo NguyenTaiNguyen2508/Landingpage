@@ -109,9 +109,9 @@ a {
 .main-nav {
   display: flex;
   justify-content: center;
-  gap: 26px;
+  gap: 18px;
   color: var(--muted);
-  font-size: 0.93rem;
+  font-size: 0.9rem;
   font-weight: 700;
 }
 
@@ -154,7 +154,8 @@ a {
 .primary-action svg,
 .secondary-action svg,
 .flow-node svg,
-.orbit-card svg {
+.orbit-card svg,
+.capability-card svg {
   width: 18px;
   height: 18px;
   flex: 0 0 auto;
@@ -281,10 +282,10 @@ a {
   background: rgba(255, 255, 255, 0.06);
 }
 
-.flow-section,
 .suite-section,
 .ai-research-section,
 .ownership-section,
+.capability-section,
 .connect-section,
 .contact-section {
   padding: 104px 32px;
@@ -450,6 +451,14 @@ a {
 .node-notify {
   left: calc(91% - 88px);
   top: 326px;
+}
+
+.workflow-flow {
+  margin-top: 84px;
+}
+
+.workflow-flow .section-title {
+  margin-bottom: 34px;
 }
 
 .suite-section {
@@ -825,6 +834,130 @@ a {
 
 .research-note span {
   line-height: 1.45;
+}
+
+.capability-section {
+  position: relative;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.014);
+}
+
+.backtest-lab-section {
+  background:
+    radial-gradient(circle at 18% 18%, rgba(240, 185, 11, 0.085), rgba(9, 13, 19, 0) 34%),
+    rgba(255, 255, 255, 0.012);
+}
+
+.live-trading-section {
+  background:
+    radial-gradient(circle at 78% 22%, rgba(52, 211, 153, 0.09), rgba(9, 13, 19, 0) 34%),
+    radial-gradient(circle at 22% 78%, rgba(34, 211, 238, 0.07), rgba(9, 13, 19, 0) 34%),
+    rgba(255, 255, 255, 0.018);
+}
+
+.capability-intro {
+  display: grid;
+  gap: 16px;
+  width: min(900px, 100%);
+  margin: 0 auto 34px;
+  text-align: center;
+}
+
+.capability-intro span {
+  color: var(--gold-strong);
+  font-size: 0.82rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.capability-intro h2 {
+  margin: 0;
+  color: var(--ink);
+  font-size: clamp(2.5rem, 4.4vw, 4.05rem);
+  line-height: 1.04;
+  letter-spacing: 0;
+}
+
+.capability-intro p {
+  width: min(760px, 100%);
+  margin: 0 auto;
+  color: var(--muted);
+  font-size: 1.04rem;
+  line-height: 1.74;
+}
+
+.capability-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  width: min(1120px, 100%);
+  margin: 0 auto;
+}
+
+.capability-card {
+  position: relative;
+  display: grid;
+  align-content: start;
+  gap: 12px;
+  min-height: 255px;
+  padding: 24px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  overflow: hidden;
+  background: rgba(8, 17, 31, 0.78);
+  box-shadow: 0 20px 52px rgba(0, 0, 0, 0.26);
+  backdrop-filter: blur(16px);
+  transition:
+    transform 260ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    border-color 260ms cubic-bezier(0.2, 0.8, 0.2, 1),
+    background 260ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.capability-card::before {
+  position: absolute;
+  inset: 0 0 auto;
+  height: 3px;
+  content: "";
+  background: linear-gradient(90deg, var(--gold-strong), rgba(34, 211, 238, 0.75), rgba(52, 211, 153, 0.75));
+  opacity: 0.76;
+}
+
+.capability-card:hover {
+  border-color: rgba(215, 161, 46, 0.42);
+  background: rgba(15, 23, 42, 0.92);
+  transform: translateY(-6px);
+}
+
+.capability-card svg {
+  width: 30px;
+  height: 30px;
+  color: var(--gold-strong);
+}
+
+.live-trading-section .capability-card:nth-child(1) svg,
+.live-trading-section .capability-card:nth-child(2) svg {
+  color: var(--green);
+}
+
+.capability-card span {
+  color: var(--gold-strong);
+  font-size: 0.78rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.capability-card h3 {
+  margin: 0;
+  color: var(--ink);
+  font-size: 1.32rem;
+  line-height: 1.22;
+}
+
+.capability-card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.96rem;
+  line-height: 1.62;
 }
 
 .ownership-section {
@@ -1295,10 +1428,10 @@ a {
     grid-template-columns: 1fr;
   }
 
-  .flow-section,
   .suite-section,
   .ai-research-section,
   .ownership-section,
+  .capability-section,
   .connect-section,
   .contact-section {
     padding: 72px 18px;
@@ -1307,6 +1440,7 @@ a {
   .section-title,
   .connect-copy,
   .ai-research-copy,
+  .capability-intro,
   .ownership-copy,
   .contact-copy {
     text-align: left;
@@ -1315,6 +1449,7 @@ a {
   .section-title h2,
   .connect-copy h2,
   .ai-research-copy h2,
+  .capability-intro h2,
   .ownership-copy h2,
   .contact-copy h2 {
     font-size: 2.28rem;
@@ -1322,6 +1457,19 @@ a {
 
   .section-title p {
     margin-left: 0;
+  }
+
+  .capability-intro p {
+    margin-left: 0;
+  }
+
+  .capability-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .capability-card {
+    min-height: 0;
+    padding: 20px;
   }
 
   .orbit-card {
@@ -1394,6 +1542,7 @@ a {
   .section-title h2,
   .connect-copy h2,
   .ai-research-copy h2,
+  .capability-intro h2,
   .ownership-copy h2,
   .contact-copy h2 {
     font-size: 2rem;
