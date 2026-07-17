@@ -257,6 +257,40 @@ a {
   animation: blink 1s steps(2, start) infinite;
 }
 
+.hero-highlights {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  width: min(880px, 100%);
+  margin: 22px auto 0;
+}
+
+.hero-highlights span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 42px;
+  padding: 0 15px;
+  border: 1px solid rgba(240, 185, 11, 0.24);
+  border-radius: 999px;
+  color: var(--soft);
+  background: rgba(8, 17, 31, 0.58);
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.18);
+  font-size: 0.94rem;
+  font-weight: 780;
+  line-height: 1.2;
+  backdrop-filter: blur(14px);
+}
+
+.hero-highlights svg {
+  width: 18px;
+  height: 18px;
+  color: var(--gold-strong);
+  flex: 0 0 auto;
+}
+
 .hero-actions {
   display: flex;
   flex-wrap: wrap;
@@ -282,6 +316,7 @@ a {
   background: rgba(255, 255, 255, 0.06);
 }
 
+.overview-section,
 .suite-section,
 .ai-research-section,
 .ownership-section,
@@ -289,6 +324,151 @@ a {
 .connect-section,
 .contact-section {
   padding: 104px 32px;
+}
+
+.overview-section {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 18% 22%, rgba(240, 185, 11, 0.1), rgba(9, 13, 19, 0) 34%),
+    radial-gradient(circle at 82% 74%, rgba(34, 211, 238, 0.07), rgba(9, 13, 19, 0) 32%),
+    rgba(255, 255, 255, 0.014);
+}
+
+.overview-section::before {
+  position: absolute;
+  inset: 0;
+  content: "";
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.024) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.022) 1px, transparent 1px);
+  background-size: 54px 54px;
+  mask-image: linear-gradient(90deg, rgba(0, 0, 0, 0.62), rgba(0, 0, 0, 0.12));
+  pointer-events: none;
+}
+
+.overview-shell {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 0.92fr) minmax(430px, 1.08fr);
+  gap: 42px;
+  align-items: center;
+  width: min(1160px, 100%);
+  margin: 0 auto;
+}
+
+.overview-copy {
+  display: grid;
+  gap: 18px;
+}
+
+.overview-copy > span {
+  color: var(--gold-strong);
+  font-size: 0.82rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.overview-copy h2 {
+  margin: 0;
+  color: var(--ink);
+  font-size: clamp(2.55rem, 4.5vw, 4.25rem);
+  line-height: 1.04;
+  letter-spacing: 0;
+}
+
+.overview-copy p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 1.05rem;
+  line-height: 1.72;
+}
+
+.overview-highlight {
+  display: grid;
+  gap: 16px;
+}
+
+.market-badge {
+  position: relative;
+  display: grid;
+  gap: 8px;
+  min-height: 178px;
+  padding: 26px;
+  border: 1px solid rgba(215, 161, 46, 0.42);
+  border-radius: 8px;
+  overflow: hidden;
+  background:
+    linear-gradient(135deg, rgba(240, 185, 11, 0.22), rgba(34, 211, 238, 0.08)),
+    rgba(8, 17, 31, 0.82);
+  box-shadow: 0 24px 68px rgba(215, 161, 46, 0.12);
+}
+
+.market-badge::after {
+  position: absolute;
+  right: -26px;
+  bottom: -50px;
+  color: rgba(255, 255, 255, 0.05);
+  content: "F1M";
+  font-size: 8.6rem;
+  font-weight: 950;
+  line-height: 1;
+  pointer-events: none;
+}
+
+.market-badge svg {
+  width: 32px;
+  height: 32px;
+  color: var(--gold-strong);
+}
+
+.market-badge span {
+  color: var(--ink);
+  font-size: clamp(2.25rem, 5vw, 4.2rem);
+  font-weight: 950;
+  line-height: 0.95;
+}
+
+.market-badge strong {
+  color: var(--soft);
+  font-size: 1.02rem;
+}
+
+.overview-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.overview-grid article {
+  display: grid;
+  gap: 10px;
+  min-height: 162px;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: rgba(8, 17, 31, 0.74);
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.22);
+  backdrop-filter: blur(16px);
+}
+
+.overview-grid svg {
+  width: 25px;
+  height: 25px;
+  color: var(--gold-strong);
+}
+
+.overview-grid strong {
+  color: var(--ink);
+  font-size: 1.04rem;
+  line-height: 1.28;
+}
+
+.overview-grid small {
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.52;
 }
 
 .section-title,
@@ -1369,6 +1549,7 @@ a {
     grid-template-columns: 1fr;
   }
 
+  .overview-shell,
   .ai-research-shell,
   .ownership-shell {
     grid-template-columns: 1fr;
@@ -1413,6 +1594,17 @@ a {
     font-size: 1.04rem;
   }
 
+  .hero-highlights {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 9px;
+  }
+
+  .hero-highlights span {
+    min-height: 44px;
+    padding: 0 14px;
+  }
+
   .hero-actions {
     display: grid;
     grid-template-columns: 1fr;
@@ -1428,6 +1620,7 @@ a {
     grid-template-columns: 1fr;
   }
 
+  .overview-section,
   .suite-section,
   .ai-research-section,
   .ownership-section,
@@ -1439,6 +1632,7 @@ a {
 
   .section-title,
   .connect-copy,
+  .overview-copy,
   .ai-research-copy,
   .capability-intro,
   .ownership-copy,
@@ -1448,6 +1642,7 @@ a {
 
   .section-title h2,
   .connect-copy h2,
+  .overview-copy h2,
   .ai-research-copy h2,
   .capability-intro h2,
   .ownership-copy h2,
@@ -1470,6 +1665,24 @@ a {
   .capability-card {
     min-height: 0;
     padding: 20px;
+  }
+
+  .overview-shell {
+    gap: 26px;
+  }
+
+  .market-badge {
+    min-height: 148px;
+    padding: 22px;
+  }
+
+  .overview-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .overview-grid article {
+    min-height: 0;
+    padding: 18px;
   }
 
   .orbit-card {
@@ -1541,6 +1754,7 @@ a {
 
   .section-title h2,
   .connect-copy h2,
+  .overview-copy h2,
   .ai-research-copy h2,
   .capability-intro h2,
   .ownership-copy h2,
