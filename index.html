@@ -5,39 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       name="description"
-      content="Test.It - hệ thống hỗ trợ realtime trading, backtest chiến lược và AI Research."
+      content="Fonez - nghiên cứu chiến lược, đi lệnh trực tiếp dưới 1 giây và điều khiển bot từ xa qua Telegram."
     />
-    <title>Test.It</title>
-    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <title>Fonez</title>
+    <link rel="icon" type="image/png" sizes="512x512" href="./logo.png?v=20260823-fonez-alpha-v2" />
     <script>
       document.documentElement.classList.add("js");
     </script>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./styles.css?v=20260920-fonez-landing-v3" />
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
-    <script src="./app.js" defer></script>
+    <script src="./app.js?v=20260920-fonez-landing-v2" defer></script>
   </head>
   <body>
     <header class="site-header" aria-label="Điều hướng chính">
-      <a class="brand" href="#top" aria-label="Test.It">
-        <span class="brand-icon" aria-hidden="true">
-          <svg class="testit-mark-svg" viewBox="0 0 32 32" focusable="false">
-            <rect x="1.5" y="1.5" width="29" height="29" rx="8" fill="#030303" stroke="#FFFFFF" stroke-opacity="0.78" stroke-width="1.4" />
-            <path d="M8.5 8.6H23.5V11.7H17.7V23.4H14.3V11.7H8.5V8.6Z" fill="#FFFFFF" />
-          </svg>
+      <a class="brand" href="#top" aria-label="Fonez">
+        <span class="fonez-wordmark" aria-hidden="true">
+          <img src="./fonez-wordmark.png?v=20260823-fonez-alpha-v2" width="320" height="213"
+            alt="" decoding="async" draggable="false" />
         </span>
-        <span class="brand-wordmark">est.it</span>
       </a>
       <nav class="main-nav" aria-label="Nội dung">
         <a href="#overview">Tổng quan</a>
         <a href="#ai-research-deep">AI Research</a>
         <a href="#backtest-lab">Backtest</a>
         <a href="#live-trading">Realtime</a>
+        <a href="#telegram-control">Telegram Control</a>
         <a href="#system-structure">Workflow</a>
         <a href="#connect">Kết nối</a>
         <a href="#contact">Liên hệ</a>
@@ -56,16 +48,18 @@
       <section class="hero" aria-labelledby="hero-title">
         <canvas id="heroCanvas" class="hero-canvas" aria-hidden="true"></canvas>
         <div class="hero-content reveal">
-          <h1 id="hero-title">Test.It</h1>
+          <h1 id="hero-title" class="hero-brand">
+            <span class="sr-only">Fonez</span>
+            <span class="fonez-wordmark fonez-wordmark-hero" aria-hidden="true">
+              <img src="./fonez-wordmark.png?v=20260823-fonez-alpha-v2" width="320" height="213"
+                alt="" decoding="async" draggable="false" />
+            </span>
+          </h1>
           <p class="hero-lead">
-            Tất cả những thứ bạn cần trong 1 app duy nhất, từ xây dựng chiến lược
-            đến vận hành chiến lược. Độc quyền cho thị trường chứng khoán phái sinh Việt Nam.
+            Tại sao bạn phải dùng AmiBroker kết hợp với một phần mềm trung gian để đi lệnh,
+            khi có thể chỉ dùng một phần mềm duy nhất, cực kỳ đơn giản, giống AmiBroker 100% và siêu tốc?
           </p>
-          <div class="typed-line" aria-live="polite">
-            <span id="typedWord">Realtime trading</span>
-            <i></i>
-          </div>
-          <div class="hero-highlights" aria-label="Điểm nổi bật của Test.It">
+          <div class="hero-highlights" aria-label="Điểm nổi bật của Fonez">
             <span>
               <i data-lucide="badge-check"></i>
               Dành riêng cho VN30F1M
@@ -75,8 +69,12 @@
               Data miễn phí trọn đời
             </span>
             <span>
-              <i data-lucide="shield-check"></i>
-              Dữ liệu an toàn tại máy tính của bạn
+              <i data-lucide="zap"></i>
+              Đi lệnh trực tiếp chưa tới 1 giây
+            </span>
+            <span>
+              <i data-lucide="send"></i>
+              Điều khiển từ xa qua Telegram
             </span>
           </div>
           <div class="hero-actions">
@@ -86,7 +84,7 @@
               data-download-trigger
             >
               <i data-lucide="download-cloud"></i>
-              <span>Tải Test.It</span>
+              <span>Tải Fonez</span>
             </a>
             <a class="secondary-action" href="#overview">
               <i data-lucide="activity"></i>
@@ -102,13 +100,13 @@
             <span>Sản phẩm chuyên biệt cho VN30F1M</span>
             <h2 id="overview-title">Một app để nghiên cứu, kiểm chứng và vận hành chiến lược phái sinh</h2>
             <p>
-              Test.It được xây dựng cho trader và đội vận hành muốn làm việc nghiêm túc với
+              Fonez được xây dựng cho trader và đội vận hành muốn làm việc nghiêm túc với
               hợp đồng tương lai VN30F1M: từ đọc dữ liệu, viết chiến lược, backtest, dùng AI
               để nghiên cứu cải tiến, đến realtime theo dõi tín hiệu và đi lệnh qua broker.
             </p>
           </div>
 
-          <div class="overview-highlight" aria-label="Điểm nổi bật Test.It">
+          <div class="overview-highlight" aria-label="Điểm nổi bật Fonez">
             <div class="market-badge">
               <i data-lucide="badge-check"></i>
               <span>VN30F1M</span>
@@ -133,7 +131,7 @@
               <article>
                 <i data-lucide="wand-sparkles"></i>
                 <strong>Không cần biết code</strong>
-                <small>AI Agent hỗ trợ bạn viết, chỉnh sửa và đưa chiến lược vào chạy thực chiến ngay trong Test.It.</small>
+                <small>AI Agent hỗ trợ bạn viết, chỉnh sửa và đưa chiến lược vào chạy thực chiến ngay trong Fonez.</small>
               </article>
             </div>
           </div>
@@ -146,7 +144,7 @@
             <span>Chủ quyền dữ liệu</span>
             <h2 id="ownership-title">Chiến lược và dữ liệu nằm trong tay bạn</h2>
             <p>
-              Test.It được triển khai trên VPS hoặc máy chủ do bạn kiểm soát. Mã chiến lược,
+              Fonez chạy trên máy tính hoặc máy chủ do bạn kiểm soát. Mã chiến lược,
               tham số, lịch sử backtest, phiên AI Research và cấu hình realtime đều ở trong
               môi trường riêng của bạn, bảo vệ bí quyết giao dịch và giúp bạn chủ động toàn bộ
               vòng đời vận hành.
@@ -156,7 +154,7 @@
           <div class="ownership-grid" aria-label="Lợi ích khi triển khai trên máy chủ riêng">
             <article>
               <i data-lucide="server-cog"></i>
-              <strong>Máy chủ của bạn</strong>
+              <strong>Máy chạy Fonez của bạn</strong>
               <small>Chủ động nơi cài đặt, quyền truy cập, backup và cách vận hành hằng ngày.</small>
             </article>
             <article>
@@ -179,7 +177,7 @@
             <span>AI Research</span>
             <h2 id="ai-research-title">Tìm chiến lược tốt hơn bằng AI Agent</h2>
             <p>
-              Test.It Deep Mind biến điều không thể trở thành có thể!
+              Fonez Deep Mind biến điều không thể trở thành có thể!
             </p>
             <div class="research-points" aria-label="Lợi ích AI Research">
               <article>
@@ -203,7 +201,7 @@
           <div class="research-lab" aria-label="Luồng làm việc AI Research">
             <div class="research-card research-card-main">
               <i data-lucide="brain-circuit"></i>
-              <span>Test.It Deep Mind</span>
+              <span>Fonez Deep Mind</span>
               <strong>Vòng nghiên cứu</strong>
             </div>
             <div class="research-rail">
@@ -230,7 +228,7 @@
             </div>
             <div class="research-note">
               <i data-lucide="lock-keyhole"></i>
-              <span>Dữ liệu giá gốc và backtest engine vẫn chạy local trong Test.It.</span>
+              <span>Dữ liệu giá gốc và backtest engine vẫn chạy local trong Fonez.</span>
             </div>
           </div>
         </div>
@@ -241,7 +239,7 @@
           <span>Backtest Lab</span>
           <h2 id="backtest-lab-title">Kiểm chứng chiến lược trước khi vào thị trường</h2>
           <p>
-            Test.It chạy AFL, Visual, PineScript và Python trên dữ liệu lịch sử, giữ warmup
+            Fonez chạy AFL, Visual, PineScript và Python trên dữ liệu lịch sử, giữ warmup
             chỉ báo, mô phỏng phí, stop, trailing, giờ mở/đóng lệnh và trả về đầy đủ equity,
             drawdown, trades để bạn biết chiến lược đang mạnh ở đâu, yếu ở đâu.
           </p>
@@ -272,20 +270,20 @@
       <section id="live-trading" class="capability-section live-trading-section" aria-labelledby="live-trading-title">
         <div class="capability-intro reveal">
           <span>Đi lệnh thực chiến</span>
-          <h2 id="live-trading-title">Từ tín hiệu đến broker qua một lớp guard an toàn</h2>
+          <h2 id="live-trading-title">Đi lệnh siêu tốc, trực tiếp tới broker</h2>
           <p>
             Realtime engine nhận tick live, tạo nến đang mở, tính tín hiệu, lọc theo vị thế,
-            giờ giao dịch và trạng thái tài khoản trước khi phân phối lệnh đến broker.
-            Chart, marker, snapshot và thông báo luôn đi cùng một trạng thái vận hành.
+            giờ giao dịch và trạng thái tài khoản. Lệnh được gửi thẳng tới API broker,
+            không qua trung gian; thời gian gửi lệnh chưa tới 1 giây.
           </p>
         </div>
 
         <div class="capability-grid reveal" aria-label="Năng lực đi lệnh thực chiến">
           <article class="capability-card">
-            <i data-lucide="radio-tower"></i>
+            <i data-lucide="zap"></i>
             <span>01</span>
-            <h3>Tick live và nến realtime</h3>
-            <p>Tick được fan-out đến từng session, nến đang mở cập nhật theo volume khớp thực tế và được đồng bộ lại với dữ liệu lịch sử khi cần.</p>
+            <h3>Gửi lệnh chưa tới 1 giây</h3>
+            <p>Tín hiệu từ tick live được xử lý ngay trong Fonez rồi gửi trực tiếp tới broker, không qua tầng trung gian.</p>
           </article>
           <article class="capability-card">
             <i data-lucide="route"></i>
@@ -299,6 +297,37 @@
             <h3>Broker, snapshot, thông báo</h3>
             <p>Hỗ trợ Entrade Demo/Real, DNSE, TCBS, SSI, lưu live snapshot, theo dõi khớp lệnh và gửi Telegram/Zalo cho người vận hành.</p>
           </article>
+        </div>
+      </section>
+
+      <section id="telegram-control" class="telegram-section" aria-labelledby="telegram-title">
+        <div class="telegram-shell reveal">
+          <div class="telegram-copy">
+            <span>Telegram Control</span>
+            <h2 id="telegram-title">Điều khiển phiên giao dịch và bot từ xa</h2>
+            <p>
+              Theo dõi và điều khiển phiên giao dịch, bot Live ngay trong Telegram.
+              Bạn có thể quản lý từ xa mà <strong>không cần bật VPS</strong>.
+            </p>
+            <a class="telegram-link" href="#contact">
+              <span>Liên hệ để thiết lập</span>
+              <i data-lucide="arrow-up-right" aria-hidden="true"></i>
+            </a>
+          </div>
+          <div class="telegram-flow" aria-label="Luồng điều khiển từ xa qua Telegram">
+            <div class="telegram-flow-step">
+              <i data-lucide="send" aria-hidden="true"></i>
+              <div><strong>Telegram</strong><small>Gửi yêu cầu từ xa</small></div>
+            </div>
+            <div class="telegram-flow-step">
+              <i data-lucide="monitor" aria-hidden="true"></i>
+              <div><strong>Fonez</strong><small>Máy chạy Fonez kết nối mạng</small></div>
+            </div>
+            <div class="telegram-flow-step">
+              <i data-lucide="bot" aria-hidden="true"></i>
+              <div><strong>Phiên giao dịch &amp; bot Live</strong><small>Theo dõi và điều khiển theo quyền đã cấp</small></div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -401,7 +430,7 @@
           <span>DNSE</span>
           <span>TCBS</span>
           <span>SSI</span>
-          <span>VPS</span>
+          <span>TELEGRAM</span>
         </div>
       </section>
 
@@ -409,9 +438,9 @@
         <div class="contact-shell reveal">
           <div class="contact-copy">
             <span>Liên hệ</span>
-            <h2 id="contact-title">Triển khai Test.It cùng chiến lược của bạn</h2>
+            <h2 id="contact-title">Triển khai Fonez cùng chiến lược của bạn</h2>
             <p>
-              Cần hỗ trợ cài đặt, chạy gateway trên VPS hoặc cấu hình realtime đi lệnh?
+              Cần hỗ trợ cài đặt, thiết lập Telegram Control hoặc cấu hình realtime đi lệnh?
               Nhắn Zalo để trao đổi nhanh theo hệ thống bạn đang vận hành.
             </p>
           </div>
@@ -436,7 +465,7 @@
     </main>
 
     <footer class="site-footer">
-      <span>Test.It</span>
+      <span>Fonez</span>
       <span>Phần mềm hỗ trợ vận hành giao dịch, không cam kết lợi nhuận.</span>
     </footer>
   </body>

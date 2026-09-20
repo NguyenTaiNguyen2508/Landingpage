@@ -2,7 +2,6 @@ const DOWNLOAD_URL =
   "https://drive.google.com/drive/folders/1t51CWXzwToFCee7DxN9S__ElGJalc30z?usp=sharing";
 
 const downloadTargets = document.querySelectorAll("[data-download-trigger]");
-const typedWord = document.querySelector("#typedWord");
 const flowSteps = Array.from(document.querySelectorAll("[data-flow-step]"));
 const flowStage = document.querySelector("[data-flow-stage]");
 const flowPath = document.querySelector("[data-flow-path]");
@@ -23,41 +22,6 @@ window.addEventListener("DOMContentLoaded", () => {
     window.lucide.createIcons();
   }
 });
-
-const words = ["Realtime trading", "Backtest chiến lược", "AI Research", "Walk-Forward", "PBO"];
-let wordIndex = 0;
-let charIndex = 0;
-let deleting = false;
-
-function typeLoop() {
-  if (!typedWord) return;
-  const current = words[wordIndex];
-  typedWord.textContent = current.slice(0, charIndex);
-
-  if (!deleting && charIndex < current.length) {
-    charIndex += 1;
-    window.setTimeout(typeLoop, 58);
-    return;
-  }
-
-  if (!deleting && charIndex === current.length) {
-    deleting = true;
-    window.setTimeout(typeLoop, 1200);
-    return;
-  }
-
-  if (deleting && charIndex > 0) {
-    charIndex -= 1;
-    window.setTimeout(typeLoop, 34);
-    return;
-  }
-
-  deleting = false;
-  wordIndex = (wordIndex + 1) % words.length;
-  window.setTimeout(typeLoop, 220);
-}
-
-typeLoop();
 
 let flowIndex = 0;
 let flowStartTime = 0;
@@ -175,7 +139,7 @@ function drawHero() {
   const gap = width / (points - 1);
 
   ctx.lineWidth = 2;
-  ctx.strokeStyle = "rgba(215, 161, 46, 0.26)";
+  ctx.strokeStyle = "rgba(96, 165, 250, 0.26)";
   ctx.beginPath();
   for (let i = 0; i < points; i += 1) {
     const x = i * gap;
@@ -208,7 +172,7 @@ function drawHero() {
   }
 
   const pulseX = ((frame * 2.2) % (width + 180)) - 90;
-  ctx.strokeStyle = "rgba(240, 185, 11, 0.2)";
+  ctx.strokeStyle = "rgba(96, 165, 250, 0.2)";
   ctx.lineWidth = 1;
   ctx.beginPath();
   ctx.moveTo(pulseX, height * 0.2);

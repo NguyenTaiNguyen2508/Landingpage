@@ -1,4 +1,4 @@
-# Test.It Landing Page
+# Fonez Landing Page
 
 Static landing page để deploy lên Vercel, viết theo hướng ít chữ, nhiều motion và giới thiệu Realtime, Backtest, AI Research.
 

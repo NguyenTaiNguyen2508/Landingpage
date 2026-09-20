@@ -9,8 +9,8 @@
   --panel-strong: rgba(8, 17, 31, 0.9);
   --line: rgba(255, 255, 255, 0.1);
   --line-strong: rgba(255, 255, 255, 0.16);
-  --gold: #d7a12e;
-  --gold-strong: #f0b90b;
+  --brand-action: #3b82f6;
+  --brand-action-strong: #60a5fa;
   --green: #34d399;
   --cyan: #22d3ee;
   --blue: #60a5fa;
@@ -26,11 +26,15 @@ html {
   scroll-behavior: smooth;
 }
 
+section[id] {
+  scroll-margin-top: 72px;
+}
+
 body {
   margin: 0;
   min-width: 320px;
   background:
-    radial-gradient(circle at 50% 0%, rgba(240, 185, 11, 0.055), rgba(9, 13, 19, 0) 30%),
+    radial-gradient(circle at 50% 0%, rgba(96, 165, 250, 0.055), rgba(9, 13, 19, 0) 30%),
     radial-gradient(circle at 84% 18%, rgba(34, 211, 238, 0.055), rgba(9, 13, 19, 0) 28%),
     linear-gradient(180deg, #0b0f16 0%, var(--page) 100%);
   color: var(--ink);
@@ -41,6 +45,18 @@ body {
 a {
   color: inherit;
   text-decoration: none;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 button,
@@ -66,53 +82,61 @@ a {
 .brand {
   display: inline-flex;
   align-items: center;
-  gap: 9px;
   min-width: max-content;
-  font-weight: 800;
 }
 
-.brand-icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 38px;
-  height: 38px;
-}
-
-.testit-mark-svg {
+.fonez-wordmark {
+  --logo-scale: 1;
+  position: relative;
   display: block;
-  width: 38px;
-  height: 38px;
+  width: calc(178px * var(--logo-scale));
+  height: calc(44px * var(--logo-scale));
   flex: 0 0 auto;
-  filter: drop-shadow(0 12px 24px rgba(215, 161, 46, 0.18));
-  shape-rendering: geometricPrecision;
+  overflow: hidden;
+  isolation: isolate;
 }
 
-.testit-mark-svg rect {
-  fill: var(--gold-strong);
-  stroke: rgba(255, 255, 255, 0.18);
+.fonez-wordmark img {
+  display: block;
+  width: calc(320px * var(--logo-scale));
+  max-width: none;
+  height: auto;
+  transform: translate(calc(-130px * var(--logo-scale)), calc(-84px * var(--logo-scale)));
+  user-select: none;
 }
 
-.testit-mark-svg path {
-  fill: #06090f;
+.fonez-wordmark::after {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  content: "";
+  pointer-events: none;
+  background: linear-gradient(90deg, #67e8f9 26%, #60a5fa 43%, #a78bfa 59%, #fb7185 74%);
+  clip-path: inset(0 calc(46px * var(--logo-scale)) 0 calc(46px * var(--logo-scale)));
+  -webkit-mask-image: url("./fonez-wordmark.png?v=20260823-fonez-alpha-v2");
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-size: calc(320px * var(--logo-scale)) calc(213px * var(--logo-scale));
+  -webkit-mask-position: calc(-130px * var(--logo-scale)) calc(-84px * var(--logo-scale));
+  mask-image: url("./fonez-wordmark.png?v=20260823-fonez-alpha-v2");
+  mask-repeat: no-repeat;
+  mask-size: calc(320px * var(--logo-scale)) calc(213px * var(--logo-scale));
+  mask-position: calc(-130px * var(--logo-scale)) calc(-84px * var(--logo-scale));
 }
 
-.brand-wordmark {
-  color: var(--ink);
-  font-family: Orbitron, system-ui, sans-serif;
-  font-size: 1.35rem;
-  font-weight: 700;
-  line-height: 1;
-  letter-spacing: 0;
+@media (forced-colors: active) {
+  .fonez-wordmark::after {
+    display: none;
+  }
 }
 
 .main-nav {
   display: flex;
   justify-content: center;
-  gap: 18px;
+  gap: clamp(10px, 1.25vw, 18px);
   color: var(--muted);
-  font-size: 0.9rem;
+  font-size: 0.86rem;
   font-weight: 700;
+  white-space: nowrap;
 }
 
 .main-nav a {
@@ -121,7 +145,7 @@ a {
 
 .main-nav a:hover,
 .main-nav a:focus-visible {
-  color: var(--gold-strong);
+  color: var(--brand-action-strong);
 }
 
 .header-cta,
@@ -146,8 +170,8 @@ a {
 .header-cta {
   padding: 0 16px;
   color: #08111f;
-  background: linear-gradient(180deg, var(--gold-strong), var(--gold));
-  box-shadow: 0 16px 36px rgba(215, 161, 46, 0.18);
+  background: linear-gradient(180deg, var(--brand-action-strong), var(--brand-action));
+  box-shadow: 0 16px 36px rgba(96, 165, 250, 0.18);
 }
 
 .header-cta svg,
@@ -165,7 +189,7 @@ a {
 .primary-action:hover,
 .secondary-action:hover {
   transform: translateY(-2px);
-  box-shadow: 0 20px 42px rgba(215, 161, 46, 0.18);
+  box-shadow: 0 20px 42px rgba(96, 165, 250, 0.18);
 }
 
 .hero {
@@ -218,17 +242,22 @@ a {
 .hero-content {
   position: relative;
   z-index: 2;
-  width: min(960px, 100%);
+  width: min(1160px, 100%);
   text-align: center;
   text-shadow: 0 2px 26px rgba(0, 0, 0, 0.45);
 }
 
 .hero h1 {
   margin: 0;
-  color: #ffffff;
-  font-size: 6.8rem;
-  line-height: 0.98;
-  letter-spacing: 0;
+}
+
+.hero-brand {
+  display: flex;
+  justify-content: center;
+}
+
+.fonez-wordmark-hero {
+  --logo-scale: 2.7;
 }
 
 .hero-lead {
@@ -239,30 +268,12 @@ a {
   line-height: 1.76;
 }
 
-.typed-line {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  min-height: 36px;
-  margin-top: 24px;
-  color: #fef3c7;
-  font-size: 1.02rem;
-  font-weight: 850;
-}
-
-.typed-line i {
-  width: 2px;
-  height: 23px;
-  background: var(--gold-strong);
-  animation: blink 1s steps(2, start) infinite;
-}
-
 .hero-highlights {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 10px;
-  width: min(880px, 100%);
+  width: min(1120px, 100%);
   margin: 22px auto 0;
 }
 
@@ -273,7 +284,7 @@ a {
   gap: 8px;
   min-height: 42px;
   padding: 0 15px;
-  border: 1px solid rgba(240, 185, 11, 0.24);
+  border: 1px solid rgba(96, 165, 250, 0.24);
   border-radius: 999px;
   color: var(--soft);
   background: rgba(8, 17, 31, 0.58);
@@ -287,7 +298,7 @@ a {
 .hero-highlights svg {
   width: 18px;
   height: 18px;
-  color: var(--gold-strong);
+  color: var(--brand-action-strong);
   flex: 0 0 auto;
 }
 
@@ -307,7 +318,7 @@ a {
 
 .primary-action {
   color: #08111f;
-  background: linear-gradient(180deg, var(--gold-strong), var(--gold));
+  background: linear-gradient(180deg, var(--brand-action-strong), var(--brand-action));
 }
 
 .secondary-action {
@@ -321,6 +332,7 @@ a {
 .ai-research-section,
 .ownership-section,
 .capability-section,
+.telegram-section,
 .connect-section,
 .contact-section {
   padding: 104px 32px;
@@ -330,7 +342,7 @@ a {
   position: relative;
   overflow: hidden;
   background:
-    radial-gradient(circle at 18% 22%, rgba(240, 185, 11, 0.1), rgba(9, 13, 19, 0) 34%),
+    radial-gradient(circle at 18% 22%, rgba(96, 165, 250, 0.1), rgba(9, 13, 19, 0) 34%),
     radial-gradient(circle at 82% 74%, rgba(34, 211, 238, 0.07), rgba(9, 13, 19, 0) 32%),
     rgba(255, 255, 255, 0.014);
 }
@@ -364,7 +376,7 @@ a {
 }
 
 .overview-copy > span {
-  color: var(--gold-strong);
+  color: var(--brand-action-strong);
   font-size: 0.82rem;
   font-weight: 900;
   text-transform: uppercase;
@@ -396,13 +408,13 @@ a {
   gap: 8px;
   min-height: 178px;
   padding: 26px;
-  border: 1px solid rgba(215, 161, 46, 0.42);
+  border: 1px solid rgba(96, 165, 250, 0.42);
   border-radius: 8px;
   overflow: hidden;
   background:
-    linear-gradient(135deg, rgba(240, 185, 11, 0.22), rgba(34, 211, 238, 0.08)),
+    linear-gradient(135deg, rgba(96, 165, 250, 0.22), rgba(34, 211, 238, 0.08)),
     rgba(8, 17, 31, 0.82);
-  box-shadow: 0 24px 68px rgba(215, 161, 46, 0.12);
+  box-shadow: 0 24px 68px rgba(96, 165, 250, 0.12);
 }
 
 .market-badge::after {
@@ -420,7 +432,7 @@ a {
 .market-badge svg {
   width: 32px;
   height: 32px;
-  color: var(--gold-strong);
+  color: var(--brand-action-strong);
 }
 
 .market-badge span {
@@ -456,7 +468,7 @@ a {
 .overview-grid svg {
   width: 25px;
   height: 25px;
-  color: var(--gold-strong);
+  color: var(--brand-action-strong);
 }
 
 .overview-grid strong {
@@ -527,7 +539,7 @@ a {
 
 .flow-curve-path {
   fill: none;
-  stroke: rgba(215, 161, 46, 0.35);
+  stroke: rgba(96, 165, 250, 0.35);
   stroke-width: 6;
   stroke-linecap: round;
 }
@@ -541,10 +553,10 @@ a {
   height: 18px;
   border: 3px solid #08111f;
   border-radius: 50%;
-  background: var(--gold-strong);
+  background: var(--brand-action-strong);
   box-shadow:
-    0 0 0 8px rgba(215, 161, 46, 0.16),
-    0 12px 28px rgba(215, 161, 46, 0.3);
+    0 0 0 8px rgba(96, 165, 250, 0.16),
+    0 12px 28px rgba(96, 165, 250, 0.3);
   pointer-events: none;
   transform: translate(var(--dot-x, 0), var(--dot-y, 0)) translate(-50%, -50%);
   will-change: transform;
@@ -573,7 +585,7 @@ a {
 .flow-node svg {
   width: 28px;
   height: 28px;
-  color: var(--gold-strong);
+  color: var(--brand-action-strong);
 }
 
 .flow-node span {
@@ -591,7 +603,7 @@ a {
 
 .flow-node.is-active {
   transform: translateY(-8px);
-  border-color: rgba(215, 161, 46, 0.5);
+  border-color: rgba(96, 165, 250, 0.5);
   background: rgba(15, 23, 42, 0.92);
 }
 
@@ -659,7 +671,7 @@ a {
   inset: 0;
   content: "";
   background:
-    radial-gradient(circle at center, rgba(215, 161, 46, 0.12), rgba(255, 255, 255, 0) 52%),
+    radial-gradient(circle at center, rgba(96, 165, 250, 0.12), rgba(255, 255, 255, 0) 52%),
     radial-gradient(circle at 70% 70%, rgba(34, 211, 238, 0.07), rgba(255, 255, 255, 0) 36%);
   pointer-events: none;
 }
@@ -675,7 +687,7 @@ a {
 
 .cycle-link {
   fill: none;
-  stroke: rgba(215, 161, 46, 0.48);
+  stroke: rgba(96, 165, 250, 0.48);
   stroke-width: 5;
   stroke-linecap: round;
   marker-end: url("#cycleArrow");
@@ -713,7 +725,7 @@ a {
 }
 
 #cycleArrow path {
-  fill: var(--gold-strong);
+  fill: var(--brand-action-strong);
 }
 
 .link-ra {
@@ -746,7 +758,7 @@ a {
 .orbit-card svg {
   width: 30px;
   height: 30px;
-  color: var(--gold-strong);
+  color: var(--brand-action-strong);
 }
 
 .orbit-card h3 {
@@ -791,7 +803,7 @@ a {
   overflow: hidden;
   background:
     radial-gradient(circle at 20% 22%, rgba(34, 211, 238, 0.08), rgba(9, 13, 19, 0) 34%),
-    radial-gradient(circle at 78% 68%, rgba(215, 161, 46, 0.1), rgba(9, 13, 19, 0) 32%),
+    radial-gradient(circle at 78% 68%, rgba(96, 165, 250, 0.1), rgba(9, 13, 19, 0) 32%),
     rgba(255, 255, 255, 0.012);
 }
 
@@ -810,7 +822,7 @@ a {
 }
 
 .ai-research-copy > span {
-  color: var(--gold-strong);
+  color: var(--brand-action-strong);
   font-size: 0.82rem;
   font-weight: 900;
   text-transform: uppercase;
@@ -854,7 +866,7 @@ a {
   grid-row: span 2;
   width: 24px;
   height: 24px;
-  color: var(--gold-strong);
+  color: var(--brand-action-strong);
 }
 
 .research-points strong {
@@ -892,7 +904,7 @@ a {
   height: 190px;
   content: "";
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(240, 185, 11, 0.2), rgba(240, 185, 11, 0));
+  background: radial-gradient(circle, rgba(96, 165, 250, 0.2), rgba(96, 165, 250, 0));
   filter: blur(18px);
   opacity: 0.72;
   pointer-events: none;
@@ -906,12 +918,12 @@ a {
   align-content: center;
   min-height: 168px;
   padding: 24px;
-  border: 1px solid rgba(215, 161, 46, 0.42);
+  border: 1px solid rgba(96, 165, 250, 0.42);
   border-radius: 8px;
   background:
-    linear-gradient(135deg, rgba(240, 185, 11, 0.16), rgba(34, 211, 238, 0.06)),
+    linear-gradient(135deg, rgba(96, 165, 250, 0.16), rgba(34, 211, 238, 0.06)),
     rgba(8, 17, 31, 0.82);
-  box-shadow: 0 22px 58px rgba(215, 161, 46, 0.12);
+  box-shadow: 0 22px 58px rgba(96, 165, 250, 0.12);
 }
 
 .research-card-main::after {
@@ -927,7 +939,7 @@ a {
 .research-card-main svg {
   width: 34px;
   height: 34px;
-  color: var(--gold-strong);
+  color: var(--brand-action-strong);
 }
 
 .research-card-main span {
@@ -968,12 +980,12 @@ a {
 
 .research-rail article:hover {
   transform: translateY(-5px);
-  border-color: rgba(215, 161, 46, 0.42);
+  border-color: rgba(96, 165, 250, 0.42);
   background: rgba(15, 23, 42, 0.92);
 }
 
 .research-rail span {
-  color: var(--gold-strong);
+  color: var(--brand-action-strong);
   font-size: 0.78rem;
   font-weight: 900;
   text-transform: uppercase;
@@ -1024,7 +1036,7 @@ a {
 
 .backtest-lab-section {
   background:
-    radial-gradient(circle at 18% 18%, rgba(240, 185, 11, 0.085), rgba(9, 13, 19, 0) 34%),
+    radial-gradient(circle at 18% 18%, rgba(96, 165, 250, 0.085), rgba(9, 13, 19, 0) 34%),
     rgba(255, 255, 255, 0.012);
 }
 
@@ -1044,7 +1056,7 @@ a {
 }
 
 .capability-intro span {
-  color: var(--gold-strong);
+  color: var(--brand-action-strong);
   font-size: 0.82rem;
   font-weight: 900;
   text-transform: uppercase;
@@ -1098,12 +1110,12 @@ a {
   inset: 0 0 auto;
   height: 3px;
   content: "";
-  background: linear-gradient(90deg, var(--gold-strong), rgba(34, 211, 238, 0.75), rgba(52, 211, 153, 0.75));
+  background: var(--brand-action-strong);
   opacity: 0.76;
 }
 
 .capability-card:hover {
-  border-color: rgba(215, 161, 46, 0.42);
+  border-color: rgba(96, 165, 250, 0.42);
   background: rgba(15, 23, 42, 0.92);
   transform: translateY(-6px);
 }
@@ -1111,7 +1123,7 @@ a {
 .capability-card svg {
   width: 30px;
   height: 30px;
-  color: var(--gold-strong);
+  color: var(--brand-action-strong);
 }
 
 .live-trading-section .capability-card:nth-child(1) svg,
@@ -1120,7 +1132,7 @@ a {
 }
 
 .capability-card span {
-  color: var(--gold-strong);
+  color: var(--brand-action-strong);
   font-size: 0.78rem;
   font-weight: 900;
   text-transform: uppercase;
@@ -1140,11 +1152,110 @@ a {
   line-height: 1.62;
 }
 
+.telegram-section {
+  background: #0c131d;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+
+.telegram-shell {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.82fr);
+  align-items: center;
+  gap: clamp(48px, 7vw, 112px);
+  width: min(1120px, 100%);
+  margin: 0 auto;
+}
+
+.telegram-copy > span {
+  color: var(--brand-action-strong);
+  font-size: 0.82rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.telegram-copy h2 {
+  max-width: 650px;
+  margin: 16px 0 20px;
+  font-size: clamp(2.5rem, 4.4vw, 4.05rem);
+  line-height: 1.06;
+}
+
+.telegram-copy p {
+  max-width: 610px;
+  margin: 0;
+  color: var(--soft);
+  font-size: 1.05rem;
+  line-height: 1.72;
+}
+
+.telegram-copy p strong {
+  color: var(--ink);
+  font-weight: 750;
+}
+
+.telegram-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 28px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid var(--brand-action-strong);
+  color: var(--ink);
+  font-weight: 750;
+}
+
+.telegram-link:hover,
+.telegram-link:focus-visible {
+  color: var(--brand-action-strong);
+}
+
+.telegram-link svg {
+  width: 17px;
+  height: 17px;
+}
+
+.telegram-flow {
+  border-top: 1px solid var(--line-strong);
+}
+
+.telegram-flow-step {
+  display: grid;
+  grid-template-columns: 38px 1fr;
+  align-items: center;
+  gap: 18px;
+  min-height: 98px;
+  padding: 20px 10px;
+  border-bottom: 1px solid var(--line-strong);
+}
+
+.telegram-flow-step svg {
+  width: 28px;
+  height: 28px;
+  color: var(--brand-action-strong);
+}
+
+.telegram-flow-step div {
+  display: grid;
+  gap: 5px;
+}
+
+.telegram-flow-step strong {
+  color: var(--ink);
+  font-size: 1.13rem;
+}
+
+.telegram-flow-step small {
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
 .ownership-section {
   position: relative;
   overflow: hidden;
   background:
-    linear-gradient(135deg, rgba(215, 161, 46, 0.09), rgba(34, 211, 238, 0.05) 48%, rgba(52, 211, 153, 0.055)),
+    linear-gradient(135deg, rgba(96, 165, 250, 0.09), rgba(34, 211, 238, 0.05) 48%, rgba(52, 211, 153, 0.055)),
     rgba(255, 255, 255, 0.018);
 }
 
@@ -1177,7 +1288,7 @@ a {
 }
 
 .ownership-copy span {
-  color: var(--gold-strong);
+  color: var(--brand-action-strong);
   font-size: 0.82rem;
   font-weight: 900;
   text-transform: uppercase;
@@ -1225,7 +1336,7 @@ a {
 
 .ownership-grid article:hover {
   transform: translateY(-5px);
-  border-color: rgba(215, 161, 46, 0.42);
+  border-color: rgba(96, 165, 250, 0.42);
   background: rgba(15, 23, 42, 0.92);
 }
 
@@ -1233,7 +1344,7 @@ a {
   grid-row: span 2;
   width: 28px;
   height: 28px;
-  color: var(--gold-strong);
+  color: var(--brand-action-strong);
 }
 
 .ownership-grid strong {
@@ -1251,7 +1362,7 @@ a {
 .connect-section {
   overflow: hidden;
   background:
-    linear-gradient(90deg, rgba(215, 161, 46, 0.08), rgba(34, 211, 238, 0.055), rgba(52, 211, 153, 0.055)),
+    linear-gradient(90deg, rgba(96, 165, 250, 0.08), rgba(34, 211, 238, 0.055), rgba(52, 211, 153, 0.055)),
     rgba(255, 255, 255, 0.018);
 }
 
@@ -1289,15 +1400,15 @@ a {
 
 .connect-strip span.is-highlight {
   color: #08111f;
-  border-color: rgba(215, 161, 46, 0.55);
-  background: linear-gradient(180deg, var(--gold-strong), var(--gold));
-  box-shadow: 0 22px 48px rgba(215, 161, 46, 0.18);
+  border-color: rgba(96, 165, 250, 0.55);
+  background: linear-gradient(180deg, var(--brand-action-strong), var(--brand-action));
+  box-shadow: 0 22px 48px rgba(96, 165, 250, 0.18);
   transform: translateY(-8px);
 }
 
 .contact-section {
   background:
-    radial-gradient(circle at 80% 20%, rgba(215, 161, 46, 0.08), rgba(9, 13, 19, 0) 32%),
+    radial-gradient(circle at 80% 20%, rgba(96, 165, 250, 0.08), rgba(9, 13, 19, 0) 32%),
     rgba(255, 255, 255, 0.018);
 }
 
@@ -1316,7 +1427,7 @@ a {
 }
 
 .contact-copy span {
-  color: var(--gold-strong);
+  color: var(--brand-action-strong);
   font-size: 0.82rem;
   font-weight: 900;
   text-transform: uppercase;
@@ -1365,14 +1476,14 @@ a {
 .contact-link:hover,
 .contact-link:focus-visible {
   transform: translateY(-5px);
-  border-color: rgba(215, 161, 46, 0.45);
-  box-shadow: 0 24px 54px rgba(215, 161, 46, 0.14);
+  border-color: rgba(96, 165, 250, 0.45);
+  box-shadow: 0 24px 54px rgba(96, 165, 250, 0.14);
 }
 
 .contact-link svg {
   width: 30px;
   height: 30px;
-  color: var(--gold-strong);
+  color: var(--brand-action-strong);
   flex: 0 0 auto;
 }
 
@@ -1424,12 +1535,6 @@ a {
   transform: translateY(0);
 }
 
-@keyframes blink {
-  50% {
-    opacity: 0;
-  }
-}
-
 @keyframes cycleDash {
   0% {
     stroke-dashoffset: 0;
@@ -1477,10 +1582,6 @@ a {
 @media (max-width: 1180px) {
   .site-header {
     gap: 18px;
-  }
-
-  .hero h1 {
-    font-size: 5.2rem;
   }
 
   .flow-visual {
@@ -1551,7 +1652,8 @@ a {
 
   .overview-shell,
   .ai-research-shell,
-  .ownership-shell {
+  .ownership-shell,
+  .telegram-shell {
     grid-template-columns: 1fr;
   }
 
@@ -1584,10 +1686,6 @@ a {
   .hero {
     min-height: 88svh;
     padding: 74px 18px 58px;
-  }
-
-  .hero h1 {
-    font-size: 4.2rem;
   }
 
   .hero-lead {
@@ -1625,6 +1723,7 @@ a {
   .ai-research-section,
   .ownership-section,
   .capability-section,
+  .telegram-section,
   .connect-section,
   .contact-section {
     padding: 72px 18px;
@@ -1636,6 +1735,7 @@ a {
   .ai-research-copy,
   .capability-intro,
   .ownership-copy,
+  .telegram-copy,
   .contact-copy {
     text-align: left;
   }
@@ -1646,6 +1746,7 @@ a {
   .ai-research-copy h2,
   .capability-intro h2,
   .ownership-copy h2,
+  .telegram-copy h2,
   .contact-copy h2 {
     font-size: 2.28rem;
   }
@@ -1744,12 +1845,8 @@ a {
 }
 
 @media (max-width: 430px) {
-  .brand-wordmark {
-    font-size: 1.1rem;
-  }
-
-  .hero h1 {
-    font-size: 3.45rem;
+  .fonez-wordmark-hero {
+    --logo-scale: 1.65;
   }
 
   .section-title h2,
@@ -1758,6 +1855,7 @@ a {
   .ai-research-copy h2,
   .capability-intro h2,
   .ownership-copy h2,
+  .telegram-copy h2,
   .contact-copy h2 {
     font-size: 2rem;
   }
