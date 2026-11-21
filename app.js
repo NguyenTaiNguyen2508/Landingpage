@@ -111,15 +111,6 @@ function setupProductViews() {
   });
 }
 
-function openLinkedDetails() {
-  const target = document.getElementById(window.location.hash.slice(1));
-  const details = target?.closest("details");
-  if (details && !details.open) {
-    details.open = true;
-    target.scrollIntoView();
-  }
-}
-
 function setupImageDialog() {
   const dialog = document.getElementById("image-dialog");
   const title = document.getElementById("image-title");
@@ -142,6 +133,7 @@ function setupImageDialog() {
       image.alt = source?.alt || title.textContent;
       image.src = link.href;
       dialog.showModal();
+      syncModalScroll();
     });
   }
 
@@ -154,6 +146,7 @@ function setupImageDialog() {
     }
   });
   dialog.addEventListener("close", () => {
+    syncModalScroll();
     if (opener?.isConnected) opener.focus({ preventScroll: true });
   });
 }
@@ -232,8 +225,225 @@ function setupReveals() {
 
 setupNavigation();
 setupProductViews();
-openLinkedDetails();
-window.addEventListener("hashchange", openLinkedDetails);
 setupImageDialog();
 setupVideos();
 setupReveals();
+
+
+function syncModalScroll() {
+  document.body.classList.toggle("modal-open", Boolean(document.querySelector("dialog[open]")));
+}
+
+function setupFeatureDetails() {
+  const dialog = document.getElementById("detail-dialog");
+  const host = dialog?.querySelector(".dialog-content");
+  const library = document.querySelector(".detail-library");
+  const close = dialog?.querySelector("[data-close-detail]");
+  if (!host || !library || !close || typeof dialog.showModal !== "function") return;
+
+  let content;
+  let opener;
+  let returnHash = "";
+  document.documentElement.classList.add("dialog-ready");
+
+  for (const link of document.querySelectorAll("[data-detail-link]")) {
+    link.setAttribute("aria-haspopup", "dialog");
+  }
+
+  function open(target, source, updateHistory) {
+    if (dialog.open) return;
+    returnHash = location.hash.startsWith("#details-") ? "" : location.hash;
+    content = target;
+    opener = source;
+    host.append(target);
+    dialog.setAttribute("aria-labelledby", target.getAttribute("aria-labelledby"));
+    dialog.showModal();
+    syncModalScroll();
+    target.querySelector("h2").focus({ preventScroll: true });
+    if (updateHistory) history.pushState(null, "", "#" + target.id);
+  }
+
+  function restore() {
+    if (content) library.append(content);
+    content = null;
+    syncModalScroll();
+    if (location.hash.startsWith("#details-")) {
+      history.replaceState(history.state, "", location.pathname + location.search + returnHash);
+    }
+    if (opener?.isConnected) opener.focus({ preventScroll: true });
+  }
+
+  function closeFeature() {
+    dialog.close();
+    restore();
+  }
+
+  function openFromHash() {
+    const target = document.getElementById(location.hash.slice(1));
+    if (target?.matches(".details-source")) {
+      open(target, null, false);
+    } else if (dialog.open) {
+      closeFeature();
+    }
+  }
+
+  document.addEventListener("click", (event) => {
+    const link = event.target.closest("[data-detail-link]");
+    if (link && !event.metaKey && !event.ctrlKey && !event.shiftKey && !event.altKey) {
+      const target = document.getElementById(link.hash.slice(1));
+      if (!target?.matches(".details-source")) return;
+      event.preventDefault();
+      open(target, link, true);
+    }
+    if (dialog.open && event.target.closest(".dialog-content a[href^='#']")) closeFeature();
+  });
+  close.addEventListener("click", closeFeature);
+  dialog.addEventListener("cancel", (event) => {
+    event.preventDefault();
+    closeFeature();
+  });
+  dialog.addEventListener("close", () => {
+    if (!dialog.open && content) restore();
+  });
+  dialog.addEventListener("click", (event) => {
+    if (event.target !== dialog) return;
+    const rect = dialog.getBoundingClientRect();
+    if (event.clientX < rect.left || event.clientX > rect.right ||
+        event.clientY < rect.top || event.clientY > rect.bottom) closeFeature();
+  });
+  window.addEventListener("popstate", openFromHash);
+  window.addEventListener("hashchange", openFromHash);
+  openFromHash();
+}
+
+function setupHeroParticles() {
+  const canvas = document.getElementById("hero-particles");
+  const context = canvas?.getContext("2d");
+  if (!context || !("ResizeObserver" in window)) return;
+
+  const hero = canvas.closest(".hero");
+  const reduced = matchMedia("(prefers-reduced-motion: reduce)");
+  const pointer = { x: .5, y: .5, active: false };
+  const center = { x: .5, y: .5 };
+  const colors = ["#2c64ed", "#3767df", "#4b62c9", "#f84242", "#ffcf03"];
+  let particles = [];
+  let width = 0;
+  let height = 0;
+  let elapsed = 0;
+  let lastTime = 0;
+  let frame = 0;
+  let visible = true;
+
+  function createParticles() {
+    const spacing = width < 600 ? 17 : 20;
+    const columns = Math.ceil(width / spacing);
+    const rows = Math.ceil(height / spacing);
+    const random = (value) => {
+      const number = Math.sin(value * 127.1 + 311.7) * 43758.5453;
+      return number - Math.floor(number);
+    };
+    particles = [];
+    for (let row = 0; row < rows; row++) {
+      for (let column = 0; column < columns; column++) {
+        const seed = row * columns + column + 1;
+        const color = random(seed + 79);
+        particles.push({
+          x: (column + .12 + random(seed) * .76) / columns,
+          y: (row + .12 + random(seed + 13) * .76) / rows,
+          phase: random(seed + 29) * Math.PI * 2,
+          size: .55 + random(seed + 41) * .55,
+          color: colors[color < .68 ? 0 : color < .83 ? 1 : color < .92 ? 2 : color < .97 ? 3 : 4]
+        });
+      }
+    }
+  }
+
+  function draw(delta) {
+    const time = reduced.matches ? 0 : elapsed;
+    const targetX = pointer.active ? .5 + (pointer.x - .5) * .64 :
+      .5 + Math.sin(time * .37) * .17 + Math.cos(time * .73) * .055;
+    const targetY = pointer.active ? .5 + (pointer.y - .5) * .48 :
+      .5 + Math.cos(time * .43) * .1;
+    const follow = 1 - Math.exp(-delta * 3.5);
+    center.x += (targetX - center.x) * follow;
+    center.y += (targetY - center.y) * follow;
+    const scale = Math.min(width, height);
+    const radius = scale * (.47 + Math.sin(time) * .045 + Math.cos(time * 2.7) * .03);
+    const band = scale * .27;
+    const drift = scale * .012;
+    context.clearRect(0, 0, width, height);
+    for (const particle of particles) {
+      const waveX = Math.sin(time * .8 + particle.y * 11 + particle.phase);
+      const waveY = Math.cos(time * .68 + particle.x * 10 + particle.phase);
+      let x = particle.x * width + waveX * drift;
+      let y = particle.y * height + waveY * drift;
+      const dx = x - center.x * width;
+      const dy = y - center.y * height;
+      const distance = Math.hypot(dx, dy);
+      const noise = Math.sin(particle.x * 13 + particle.y * 8 + time * .6) * scale * .035;
+      const strength = Math.max(0, 1 - Math.abs(distance - radius + noise) / band);
+      const intensity = strength * strength * (3 - 2 * strength);
+      const angle = Math.atan2(dy, dx) + waveX * .45;
+      const displacement = intensity * scale * .018;
+      x += Math.cos(angle) * displacement;
+      y += Math.sin(angle) * displacement;
+      const length = particle.size * (.55 + intensity * 3.6);
+      const thickness = Math.max(.45, length * .38);
+      context.globalAlpha = .15 + intensity * .78;
+      context.fillStyle = intensity > .08 ? particle.color : "#52627d";
+      context.save();
+      context.translate(x, y);
+      context.rotate(angle);
+      context.fillRect(-length * .5, -thickness * .5, length, thickness);
+      context.restore();
+    }
+  }
+
+  function tick(time) {
+    const delta = lastTime ? Math.min((time - lastTime) / 1000, .05) : 1 / 60;
+    lastTime = time;
+    elapsed += delta;
+    draw(delta);
+    frame = requestAnimationFrame(tick);
+  }
+
+  function update() {
+    cancelAnimationFrame(frame);
+    frame = 0;
+    lastTime = 0;
+    draw(1);
+    if (width && height && visible && !document.hidden && !reduced.matches) {
+      frame = requestAnimationFrame(tick);
+    }
+  }
+
+  new ResizeObserver(() => {
+    width = canvas.clientWidth;
+    height = canvas.clientHeight;
+    const ratio = Math.min(devicePixelRatio || 1, 2);
+    canvas.width = Math.round(width * ratio);
+    canvas.height = Math.round(height * ratio);
+    context.setTransform(ratio, 0, 0, ratio, 0, 0);
+    createParticles();
+    update();
+  }).observe(canvas);
+
+  new IntersectionObserver(([entry]) => {
+    visible = entry.isIntersecting;
+    update();
+  }).observe(canvas);
+
+  hero.addEventListener("pointermove", (event) => {
+    if (event.pointerType === "touch") return;
+    const bounds = canvas.getBoundingClientRect();
+    pointer.x = (event.clientX - bounds.left) / bounds.width;
+    pointer.y = (event.clientY - bounds.top) / bounds.height;
+    pointer.active = true;
+  });
+  hero.addEventListener("pointerleave", () => { pointer.active = false; });
+  document.addEventListener("visibilitychange", update);
+  reduced.addEventListener("change", update);
+}
+
+setupFeatureDetails();
+setupHeroParticles();

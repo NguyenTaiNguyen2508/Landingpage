@@ -1,73 +1,19 @@
-.view-stage { --stack-product-views: 1; }
-
-/* Every panel contributes its caption height to the same grid track. */
-.view-stage.view-stacked,
-.landing-loading .view-stage {
-  display: grid;
-  isolation: isolate;
-}
-
-.view-stacked > [data-view-panel],
-.landing-loading .view-stage > [data-view-panel] {
-  display: grid;
-  grid-area: 1 / 1;
-  grid-template-rows: auto 1fr;
-  align-self: stretch;
-  min-width: 0;
-  visibility: hidden;
-  opacity: 0;
-  pointer-events: none;
-}
-
-.view-stacked > .view-active,
-.landing-loading .view-stage:not(:has(> :target)) > :first-child,
-.landing-loading .view-stage > :target {
-  z-index: 1;
-  visibility: visible;
-  opacity: 1;
-  pointer-events: auto;
-}
+.view-stage.view-stacked, .landing-loading .view-stage { display: grid; isolation: isolate; }
+.view-stacked > [data-view-panel], .landing-loading .view-stage > [data-view-panel] { display: grid; grid-area: 1 / 1; grid-template-rows: auto 1fr; min-width: 0; align-self: stretch; visibility: hidden; opacity: 0; pointer-events: none; }
+.view-stacked > .view-active, .landing-loading .view-stage:not(:has(> :target)) > :first-child, .landing-loading .view-stage > :target { z-index: 1; visibility: visible; opacity: 1; pointer-events: auto; }
+.landing-loading .detail-library { display: none; }
 
 @media (prefers-reduced-motion: no-preference) {
-  .view-stacked.view-changing > [data-view-panel] {
-    mix-blend-mode: plus-lighter;
-    transition: opacity 300ms cubic-bezier(.33, 0, .3, 1), visibility 0s linear 300ms;
-  }
-
+  .view-stacked.view-changing > [data-view-panel] { mix-blend-mode: plus-lighter; transition: opacity 300ms ease, visibility 0s 300ms; }
   .view-stacked.view-changing > .view-active { transition-delay: 0s; }
-
-  [data-reveal].reveal-pending:not(figure) {
-    transform: translateY(8px);
-    opacity: .86;
-  }
-
-  [data-reveal].reveal-pending.is-revealed:not(figure) {
-    transform: none;
-    opacity: 1;
-    transition: transform 420ms cubic-bezier(.2, .7, .3, 1), opacity 300ms ease-out;
-  }
-
-  figure.reveal-pending a:has(> img) { overflow: clip; }
-  figure.reveal-pending a > img { transform: scale(1.018); }
-  figure.reveal-pending.is-revealed a > img {
-    transform: none;
-    transition: transform 540ms cubic-bezier(.2, .7, .3, 1);
-  }
-
-  #image-dialog[open] { animation: open-image 180ms ease-out; }
-  @keyframes open-image {
-    from { transform: translateY(4px); opacity: .7; }
-    to { transform: none; opacity: 1; }
-  }
-
-  @supports (interpolate-size: allow-keywords) and selector(details::details-content) and (transition-behavior: allow-discrete) {
-    .feature-list details::details-content {
-      interpolate-size: allow-keywords;
-      block-size: 0;
-      overflow: clip;
-      transition: block-size 250ms cubic-bezier(.22, .72, .32, 1), content-visibility 250ms allow-discrete;
-    }
-
-    .feature-list details[open]::details-content { block-size: auto; }
-  }
+  .reveal-pending { opacity: .3; transform: translateY(18px); }
+  .reveal-pending.is-revealed { opacity: 1; transform: none; transition: opacity 600ms ease, transform 700ms cubic-bezier(.2,.7,.3,1); }
+  #detail-dialog[open], #image-dialog[open] { animation: dialog-in 260ms cubic-bezier(.2,.7,.3,1) both; }
+  dialog[open]::backdrop { animation: backdrop-in 220ms ease both; }
+  @keyframes dialog-in { from { opacity: 0; transform: translateY(16px) scale(.985); } to { opacity: 1; transform: none; } }
+  @keyframes backdrop-in { from { opacity: 0; } to { opacity: 1; } }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
 }
