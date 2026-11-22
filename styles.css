@@ -141,6 +141,32 @@ a:focus-visible, button:focus-visible, [tabindex]:focus-visible { outline: 3px s
 .detail-picture { margin-top: 30px; }
 .detail-picture img { width: 100%; height: auto; max-height: 520px; object-fit: contain; background: #11151c; border-radius: 14px; }
 .detail-picture figcaption { font-size: 13px; color: var(--muted); margin-top: 12px; }
+.install-steps { list-style: none; counter-reset: install; margin: 30px 0; padding: 0; }
+.install-steps > li { position: relative; padding-left: 45px; margin-top: 22px; counter-increment: install; }
+.install-steps > li::before { content: counter(install); position: absolute; left: 0; top: 0; width: 29px; height: 29px; border: 1px solid var(--line); border-radius: 50%; display: grid; place-items: center; font-size: 15px; color: var(--muted); }
+.install-steps h3, .install-troubleshooting > h3 { font-size: 20px; font-weight: 500; letter-spacing: -.015em; }
+.install-steps p { margin-top: 6px; color: var(--muted); font-size: 17px; line-height: 1.6; }
+.download-guide strong { font-weight: 550; }
+.install-troubleshooting { padding-top: 26px; border-top: 1px solid var(--line); }
+.install-troubleshooting > p { margin: 9px 0 20px; font-size: 16px; color: var(--muted); }
+.install-troubleshooting details { border-bottom: 1px solid var(--line); }
+.install-troubleshooting summary { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 19px 0; cursor: pointer; list-style: none; font-size: 17px; font-weight: 500; }
+.install-troubleshooting summary::-webkit-details-marker { display: none; }
+.install-troubleshooting summary::after { content: "+"; flex: none; font-size: 24px; font-weight: 400; color: var(--muted); }
+.install-troubleshooting details[open] summary::after { content: "−"; }
+.install-troubleshooting summary:hover { color: #215ac6; }
+.install-troubleshooting summary:focus-visible { outline: 3px solid #547bdf; outline-offset: 4px; }
+.install-answer { padding: 0 0 22px; font-size: 16px; line-height: 1.65; color: var(--muted); }
+.install-answer ol { margin: 16px 0; padding-left: 25px; }
+.install-answer li + li { margin-top: 12px; }
+.install-answer strong { color: var(--ink); }
+.install-note { padding: 14px 18px; background: var(--soft); border-radius: 12px; }
+.download-support { margin-block: 25px 30px; font-size: 16px; color: var(--muted); line-height: 1.6; }
+.download-support a { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; white-space: nowrap; }
+.download-action { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding-top: 22px; border-top: 1px solid var(--line); }
+.download-version { font-size: 16px; }
+.download-status { margin-top: 5px; color: var(--muted); font-size: 14px; max-width: 340px; }
+.dialog-content .download-action { position: sticky; bottom: 0; margin: 0 -48px -40px; padding: 20px 48px; background: #fff; box-shadow: 0 -8px 16px rgb(255 255 255 / .9); }
 dialog { border: 1px solid #e1e4eb; background: #fff; color: var(--ink); border-radius: 28px; padding: 0; }
 dialog::backdrop { background: rgb(19 23 34 / .4); backdrop-filter: blur(8px); }
 #detail-dialog { width: min(860px, calc(100vw - 40px)); max-height: min(90svh, 1000px); overflow-y: auto; overscroll-behavior: contain; }
@@ -149,7 +175,7 @@ dialog::backdrop { background: rgb(19 23 34 / .4); backdrop-filter: blur(8px); }
 .close-dialog { display: inline-flex; align-items: center; gap: 14px; min-height: 36px; background: #f1f3f6; border: 0; border-radius: 30px; padding: 6px 17px; font-size: 15px; }
 .close-dialog:hover { background: #e5e8ee; }
 .close-dialog span { font-size: 23px; line-height: 1; }
-.dialog-content .details-source { padding: 35px 48px 40px; }
+.dialog-content .details-source { padding: 35px 48px 40px; scroll-margin-top: 68px; }
 .dialog-content h2 { font-size: 42px; }
 #image-dialog { width: max-content; max-width: calc(100vw - 40px); max-height: 94svh; overflow: auto; }
 .image-dialog-bar strong { font-size: 15px; font-weight: 500; }
@@ -169,6 +195,11 @@ dialog::backdrop { background: rgb(19 23 34 / .4); backdrop-filter: blur(8px); }
   .workstation-bar { display: block; padding: 10px 14px; }
   .workstation-name { display: block; margin-bottom: 8px; }
   .view-list { justify-content: space-between; }
+}
+@media (min-width: 821px) and (max-width: 900px) {
+  .header-inner { gap: 12px; }
+  #main-nav { gap: 10px; }
+  .button.header-download { padding-inline: 12px; }
 }
 @media (max-width: 820px) {
   .header-inner { min-height: 60px; flex-wrap: wrap; gap: 12px; }
@@ -240,7 +271,52 @@ dialog::backdrop { background: rgb(19 23 34 / .4); backdrop-filter: blur(8px); }
   .product-facts dt { font-size: 20px; }
   #detail-dialog { width: calc(100vw - 24px); max-height: 94svh; border-radius: 22px; }
   .dialog-toolbar { padding-inline: 20px; }
+  .install-steps > li { padding-left: 40px; }
+  .download-action { flex-direction: column; align-items: stretch; }
+  .download-action .button { width: 100%; }
+  .dialog-content .download-action { bottom: 0; margin: 0 -24px -24px; padding: 16px 24px; }
+  .download-status { max-width: none; }
   .image-dialog-bar { gap: 12px; padding-inline: 16px; }
   #image-dialog { max-width: calc(100vw - 16px); border-radius: 16px; }
   .image-scroll img { max-width: none; width: max-content; max-height: 70svh; }
 }
+
+.download-options { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 28px 0 30px; padding: 0; border: 0; min-width: 0; }
+.download-options legend { margin-bottom: 12px; font-size: 16px; color: var(--muted); }
+.download-option { display: flex; align-items: start; gap: 12px; padding: 18px; border: 1px solid var(--line); border-radius: 16px; cursor: pointer; }
+.download-option:has(input:checked) { border-color: var(--ink); background: var(--soft); }
+.download-option:has(input:focus-visible) { outline: 3px solid #547bdf; outline-offset: 3px; }
+.download-option input { flex: none; margin: 4px 0 0; width: 17px; height: 17px; accent-color: var(--ink); }
+.download-option strong { display: block; font-size: 18px; margin-bottom: 6px; }
+.download-option span span { display: block; font-size: 15px; line-height: 1.5; color: var(--muted); }
+.edition-heading { font-size: 23px; font-weight: 500; letter-spacing: -.02em; }
+.edition-instructions { margin-top: 28px; }
+.edition-instructions .install-steps { margin-top: 22px; }
+.edition-instructions > .install-note { margin-bottom: 28px; color: var(--muted); font-size: 16px; line-height: 1.6; }
+.downloads-ready .no-script-download { display: none; }
+.download-guide:not(.downloads-ready) [data-download-action] { display: none; }
+.download-guide .button[aria-disabled="true"] { background: #e8e9ec; color: var(--muted); cursor: default; box-shadow: none; }
+@media (max-width: 600px) { .download-options { grid-template-columns: 1fr; } .download-option { padding: 15px; } }
+
+.download-guide:not(.downloads-ready) .download-options { display: none; }
+
+.affiliate { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: clamp(36px, 6vw, 110px); padding-block: 80px 120px; }
+.affiliate .section-tag { margin: 0 0 20px; }
+.affiliate h2 { max-width: 580px; font-size: clamp(32px, 3.34vw, 48px); }
+.affiliate .product-copy > .affiliate-bonus { font-size: 16px; line-height: 1.6; margin-top: 18px; }
+.affiliate-bonus strong { font-weight: 550; color: var(--ink); }
+.affiliate .button { margin-top: 30px; }
+.affiliate-rates { margin: 0; }
+.affiliate-rates > div { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding-block: 28px; border-top: 1px solid var(--line); }
+.affiliate-rates > div:last-child { border-bottom: 1px solid var(--line); }
+.affiliate-rates dt { font-size: 18px; line-height: 1.4; max-width: 300px; }
+.affiliate-rates dt > span { display: block; margin-top: 8px; color: var(--muted); font-size: 14px; line-height: 1.5; }
+.affiliate-rates dd { margin: 0; font-size: clamp(48px, 4vw, 66px); font-weight: 450; line-height: 1; letter-spacing: -.06em; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.affiliate-rates dd > span { font-size: .55em; margin-left: 3px; }
+.affiliate-subheading { font-size: 22px; font-weight: 500; margin-top: 32px; }
+.affiliate-steps { margin: 18px 0 0; padding-left: 24px; color: var(--muted); font-size: 17px; line-height: 1.65; }
+.affiliate-steps li + li { margin-top: 12px; }
+.affiliate-details strong { color: var(--ink); font-weight: 550; }
+.affiliate-policy-note { color: var(--muted); font-size: 15px; line-height: 1.65; margin: 20px 0 24px; }
+@media (max-width: 820px) { .affiliate { gap: 30px; } .affiliate-rates dt { font-size: 16px; } .affiliate-rates > div { gap: 16px; } }
+@media (max-width: 600px) { .affiliate { grid-template-columns: 1fr; padding-block: 40px 65px; gap: 35px; } .affiliate h2 { font-size: 35px; } .affiliate .product-copy { max-width: none; } .affiliate-rates > div { padding-block: 22px; } .affiliate-rates dt { font-size: 17px; } }

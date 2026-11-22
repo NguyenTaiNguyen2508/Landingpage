@@ -11,9 +11,9 @@
   <link rel="preload" href="./fonts/google-sans-flex-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="./fonts/google-sans-flex-vietnamese.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="./fonts/google-sans-flex.css">
-  <link rel="stylesheet" href="./styles.css?v=20261121-logo-motion2">
+  <link rel="stylesheet" href="./styles.css?v=20261122-affiliate-nav">
   <link rel="stylesheet" href="./motion.css?v=20261121">
-  <script src="./app.js?v=20261121-logo-motion2" defer onload="document.documentElement.classList.remove('landing-loading')" onerror="document.documentElement.classList.remove('landing-loading')"></script>
+  <script src="./app.js?v=20261121-portable-msi" defer onload="document.documentElement.classList.remove('landing-loading')" onerror="document.documentElement.classList.remove('landing-loading')"></script>
 </head>
 <body id="top">
   <a class="skip-link" href="#overview">Đến nội dung chính</a>
@@ -26,9 +26,10 @@
         <a href="#amibroker-plugin">AmiBroker Plugin</a>
         <a href="#connect">Kết nối</a>
         <a href="#video">Video hướng dẫn</a>
+        <a href="#affiliate">Affiliate</a>
         <a href="#contact">Liên hệ</a>
       </nav>
-      <a class="button primary header-download" href="https://drive.google.com/drive/folders/1t51CWXzwToFCee7DxN9S__ElGJalc30z?usp=sharing">Tải Fonez <span class="download-mark" aria-hidden="true"></span></a>
+      <a class="button primary header-download" href="#details-download" data-detail-link>Tải Fonez <span class="download-mark" aria-hidden="true"></span></a>
     </div>
   </header>
   <nav class="product-nav" aria-label="Các tính năng giao dịch">
@@ -42,7 +43,7 @@
         <h1 id="hero-title">Phái sinh Việt Nam.<br>Giao dịch theo cách của bạn.</h1>
         <div class="hero-actions">
           <a class="button secondary" href="#workspace">Xem giao diện</a>
-          <a class="button primary" href="https://drive.google.com/drive/folders/1t51CWXzwToFCee7DxN9S__ElGJalc30z?usp=sharing">Tải Fonez <span class="download-mark" aria-hidden="true"></span></a>
+          <a class="button primary" href="#details-download" data-detail-link>Tải Fonez <span class="download-mark" aria-hidden="true"></span></a>
         </div>
       </div>
     </section>
@@ -203,12 +204,26 @@
         </div>
       </div>
     </section>
+    <section class="affiliate wrap" id="affiliate" aria-labelledby="affiliate-title">
+      <div class="product-copy" data-reveal>
+        <p class="section-tag">Chương trình Affiliate</p>
+        <h2 id="affiliate-title">Chia sẻ Fonez.<br>Nhận hoa hồng.</h2>
+        <p>Gửi mã của bạn cho người muốn dùng Fonez. Khi họ mua Realtime hoặc credit AI, bạn nhận hoa hồng theo chính sách giới thiệu.</p>
+        <p class="affiliate-bonus">Người nhập mã hợp lệ khi đăng ký được tặng thêm <strong>7 ngày Realtime</strong>.</p>
+        <a class="button see-more" href="#details-affiliate" data-detail-link aria-label="Xem chính sách hoa hồng giới thiệu">Xem thêm</a>
+      </div>
+      <dl class="affiliate-rates" aria-label="Mức hoa hồng chung">
+        <div><dt>Đơn Realtime đầu tiên đủ điều kiện<span>Số tiền thực nhận từ 100.000đ</span></dt><dd>30<span>%</span></dd></div>
+        <div><dt>Các đơn sau hoặc credit AI<span>Hoa hồng khi giới thiệu trực tiếp</span></dt><dd>10<span>%</span></dd></div>
+        <div><dt>Giới thiệu ở cấp thứ hai<span>Khi người bạn giới thiệu tiếp tục giới thiệu người khác</span></dt><dd>5<span>%</span></dd></div>
+      </dl>
+    </section>
     <section class="contact" id="contact" aria-labelledby="contact-title">
       <div class="wrap contact-inner">
         <h2 id="contact-title">Bắt đầu cùng Fonez.</h2>
         <p>Tải ứng dụng hoặc nhắn qua Zalo để được hướng dẫn cài đặt, kết nối tài khoản và thiết lập bot.</p>
         <div class="contact-actions">
-          <a class="button primary" href="https://drive.google.com/drive/folders/1t51CWXzwToFCee7DxN9S__ElGJalc30z?usp=sharing">Tải Fonez <span class="download-mark" aria-hidden="true"></span></a>
+          <a class="button primary" href="#details-download" data-detail-link>Tải Fonez <span class="download-mark" aria-hidden="true"></span></a>
           <a class="button secondary" href="https://zalo.me/0989746792" target="_blank" rel="noopener">Zalo 0989 746 792</a>
           <a class="button secondary" href="https://zalo.me/0374685088" target="_blank" rel="noopener">Zalo 0374 685 088</a>
         </div>
@@ -218,10 +233,112 @@
   <footer class="footer wrap">
     <a class="brand" href="#top" aria-label="Fonez, về đầu trang"><img src="./media/fonez-sidebar-logo.svg" width="178" height="44" alt="Fonez"></a>
     <p>Fonez là công cụ hỗ trợ giao dịch. Lợi nhuận không được đảm bảo.</p>
+    <a href="#affiliate">Hoa hồng giới thiệu</a>
     <a href="https://www.youtube.com/@FONEZPlatform" target="_blank" rel="noopener">YouTube</a>
     <a href="#top">Về đầu trang</a>
   </footer>
   <div class="detail-library">
+
+    <section class="details-source affiliate-details" id="details-affiliate" aria-labelledby="details-affiliate-title">
+      <h2 id="details-affiliate-title" tabindex="-1">Hoa hồng giới thiệu</h2>
+      <p class="detail-intro">Bạn chia sẻ mã Fonez, người mới nhận thêm thời gian trải nghiệm. Khi họ phát sinh đơn thanh toán đủ điều kiện, Fonez ghi nhận hoa hồng cho bạn.</p>
+      <h3 class="affiliate-subheading">Cách tham gia</h3>
+      <ol class="affiliate-steps">
+        <li>Đăng nhập trong ứng dụng, mở <strong>Tài khoản Fonez → Hoa hồng giới thiệu</strong> và sao chép mã của bạn.</li>
+        <li>Gửi mã cho người bạn giới thiệu. Người đó nhập mã ở ô <strong>Mã giới thiệu</strong> khi đăng ký Fonez để được tặng thêm <strong>7 ngày Realtime</strong> trên máy đã đăng ký.</li>
+        <li>Theo dõi người đã đăng ký qua mã, doanh thu và hoa hồng <strong>đang chờ / đã trả</strong> ngay trong mục <strong>Hoa hồng giới thiệu</strong>.</li>
+      </ol>
+      <dl class="product-facts">
+        <div><dt>30% cho đơn Realtime đầu tiên đủ điều kiện</dt><dd>Áp dụng cho đơn Realtime đầu tiên có số tiền thực nhận từ <strong>100.000đ</strong> của người bạn trực tiếp giới thiệu. Các đơn Realtime dưới mức này không phát sinh hoa hồng trực tiếp và không làm mất quyền hưởng mức 30% ở đơn đầu tiên đủ điều kiện.</dd></div>
+        <div><dt>10% cho các đơn tiếp theo và credit AI</dt><dd>Sau đơn Realtime đã hưởng mức 30%, các đơn Realtime tiếp theo đủ điều kiện được tính mức <strong>10%</strong>. Đơn mua credit AI của người bạn trực tiếp giới thiệu cũng được tính mức 10%, kể cả khi họ chưa mua Realtime.</dd></div>
+        <div><dt>5% ở cấp giới thiệu thứ hai</dt><dd>Nếu người bạn giới thiệu tiếp tục giới thiệu một người khác, bạn có thể nhận thêm <strong>5%</strong> từ đơn thanh toán đủ điều kiện của người đó. Chương trình hiện ghi nhận hai cấp giới thiệu.</dd></div>
+        <div><dt>Tính trên số tiền thực nhận, chờ đối soát trước khi trả</dt><dd>Hoa hồng được ghi nhận từ đơn đã thanh toán và hoàn tất xử lý trên hệ thống. Khoản mới ghi nhận ở trạng thái <strong>đang chờ</strong> cho đến khi Fonez hoàn tất đối soát và chi trả. Bạn có thể xem riêng các khoản đang chờ, đã trả và tổng hoa hồng trong ứng dụng.</dd></div>
+        <div><dt>Bổ sung tài khoản ngân hàng để nhận hoa hồng</dt><dd>Trong <strong>Tài khoản Fonez → Thông tin nhận hoa hồng</strong>, điền ngân hàng, số tài khoản và tên chủ tài khoản. Bạn có thể bổ sung sau khi đăng ký; cần điền đầy đủ để Fonez thực hiện chi trả.</dd></div>
+        <div><dt>Giữ nguyên các khoản đã ghi nhận</dt><dd>Thay đổi chính sách hoặc người giới thiệu chỉ áp dụng cho hoa hồng phát sinh về sau. Các khoản đã ghi nhận giữ nguyên người hưởng, tỷ lệ và số tiền. Mã giới thiệu phải đang hoạt động; không dùng mã của chính mình.</dd></div>
+      </dl>
+      <p class="affiliate-policy-note">Các mức trên là chính sách chung, đối chiếu ngày <time datetime="2026-11-22">22/11/2026</time>. Nếu có chính sách riêng, mức hoa hồng áp dụng theo thỏa thuận với Fonez. Xem chính sách đang áp dụng tại <strong>Tài khoản Fonez → Chương trình giới thiệu</strong>.</p>
+      <a class="button secondary" href="#contact">Nhắn Fonez để được hướng dẫn</a>
+    </section>
+
+
+    <section class="details-source download-guide" id="details-download" aria-labelledby="details-download-title">
+      <h2 id="details-download-title" tabindex="-1">Bắt đầu với Fonez</h2>
+      <p class="detail-intro">Hai cách dùng Fonez trên Windows 64-bit. Chọn bản phù hợp rồi xem hướng dẫn trước khi tải nhé.</p>
+      <fieldset class="download-options">
+        <legend>Chọn bản tải xuống</legend>
+        <label class="download-option"><input type="radio" name="download-edition" value="portable" checked aria-controls="portable-instructions"><span><strong>Portable</strong><span>Tải về và mở ngay, không cần cài đặt.</span></span></label>
+        <label class="download-option"><input type="radio" name="download-edition" value="msi" aria-controls="msi-instructions"><span><strong>Bản cài đặt MSI</strong><span>Chọn thư mục cài, mở Fonez từ Start Menu.</span></span></label>
+      </fieldset>
+      <section class="edition-instructions" id="portable-instructions" aria-labelledby="portable-instructions-title">
+      <h3 id="portable-instructions-title" class="edition-heading">Dùng bản Portable</h3>
+      <ol class="install-steps">
+        <li><h3>Tải ứng dụng</h3><p>Chọn <strong>Tải Portable</strong> bên dưới. Tệp được tải trực tiếp từ máy chủ Fonez. Nếu trình duyệt hỏi nơi lưu, chọn <strong>Lưu (Save)</strong>.</p></li>
+        <li><h3>Đặt Fonez vào thư mục riêng</h3><p>Tạo thư mục <strong>Fonez</strong> ở nơi bạn muốn lưu ứng dụng, chẳng hạn trong <strong>Tài liệu (Documents)</strong>, rồi chuyển tệp <strong>Fonez.exe</strong> vào đó.</p></li>
+        <li><h3>Mở ứng dụng</h3><p>Nhấp đúp vào <strong>Fonez.exe</strong>. Nếu mở được bình thường, bạn có thể dùng ngay. Nếu Windows chặn ứng dụng, chọn đúng trường hợp bên dưới để xem cách xử lý.</p></li>
+      </ol>
+      <a class="button primary no-script-download" href="https://fonez.duckdns.org/v1/app-updates/artifacts/8e5a787c2f792a16f299eb5953868409e92f31b3bca1d9acbe559513d1106db3.exe" download="Fonez.exe">Tải Portable</a>
+      </section>
+      <section class="edition-instructions" id="msi-instructions" aria-labelledby="msi-instructions-title">
+        <h3 id="msi-instructions-title" class="edition-heading">Cài Fonez bằng MSI</h3>
+        <ol class="install-steps">
+          <li><h3>Tải bộ cài</h3><p>Chọn <strong>Tải bản MSI</strong>. Lưu tệp có đuôi <strong>.msi</strong> về máy, rồi nhấp đúp để mở bộ cài FONEZ.</p></li>
+          <li><h3>Chọn thư mục và cài đặt</h3><p>Ở lần cài đầu, chọn hoặc nhập thư mục trong ô <strong>Installation folder</strong>. Bạn có thể giữ thư mục mặc định <strong>Program Files\FONEZ</strong>, rồi bấm <strong>Install</strong>.</p></li>
+          <li><h3>Xác nhận quyền cài đặt</h3><p>Nếu Windows hỏi quyền quản trị, kiểm tra đúng bộ cài FONEZ rồi chọn <strong>Yes (Có)</strong>. Bạn có thể cần tài khoản quản trị trên máy.</p></li>
+          <li><h3>Mở Fonez</h3><p>Cài xong, mở <strong>Start</strong>, tìm <strong>Fonez Desktop</strong> và mở ứng dụng. Fonez lưu dữ liệu riêng cho từng người dùng và tiếp tục nhận cập nhật ngay trong ứng dụng.</p></li>
+        </ol>
+        <p class="install-note">Đã cài Fonez bằng MSI? Bạn có thể cập nhật trong ứng dụng. Chỉ tải lại bộ cài khi muốn cài mới hoặc cài lại; không chép bản Portable đè vào thư mục cài đặt.</p>
+        <a class="button primary no-script-download" href="https://fonez.duckdns.org/v1/app-installers/download">Tải bản MSI</a>
+      </section>
+      <div class="install-troubleshooting">
+        <h3>Nếu Windows hiện cảnh báo</h3>
+        <p>Chỉ thực hiện khi bạn đã xác nhận tệp tải từ Fonez. Không phải cảnh báo nào cũng là báo nhầm.</p>
+        <details>
+          <summary>Hiện “Windows protected your PC”</summary>
+          <div class="install-answer">
+            <p>Đây là cửa sổ Microsoft Defender SmartScreen. Nếu bạn tin cậy tệp vừa tải:</p>
+            <ol>
+              <li>Trong cửa sổ cảnh báo, chọn <strong>More info (Thông tin thêm)</strong>.</li>
+              <li>Kiểm tra đúng tệp Fonez vừa tải, rồi chọn <strong>Run anyway (Vẫn chạy)</strong>.</li>
+              <li>Chờ Fonez mở. Nếu thông báo nhắc đến <strong>Smart App Control</strong>, xem mục kế tiếp vì cách xử lý khác nhau.</li>
+            </ol>
+          </div>
+        </details>
+        <details>
+          <summary>Bị Smart App Control chặn trên Windows 11</summary>
+          <div class="install-answer">
+            <p>Smart App Control chưa có tùy chọn cho phép riêng một ứng dụng. Nếu bạn quyết định tắt tính năng này để mở Fonez:</p>
+            <ol>
+              <li>Mở <strong>Start</strong>, gõ <strong>Windows Security</strong> và mở ứng dụng cùng tên.</li>
+              <li>Chọn <strong>App &amp; browser control (Kiểm soát ứng dụng và trình duyệt)</strong>.</li>
+              <li>Chọn <strong>Smart App Control settings (Cài đặt Smart App Control)</strong>.</li>
+              <li>Đọc cảnh báo trên máy, chọn <strong>Off (Tắt)</strong> và xác nhận nếu Windows yêu cầu. Sau đó mở lại <strong>Fonez.exe</strong>.</li>
+            </ol>
+            <p class="install-note">Thay đổi này áp dụng cho mọi ứng dụng trên máy. Nếu chưa chắc, hãy nhắn Fonez để được hỗ trợ trước khi tắt. Các bản Windows cũ có thể yêu cầu đặt lại hoặc cài lại Windows để bật lại tính năng này.</p>
+          </div>
+        </details>
+        <details>
+          <summary>Defender chặn hoặc tự xóa tệp Portable</summary>
+          <div class="install-answer">
+            <p>Hãy gửi tên cảnh báo cho bộ phận hỗ trợ để xác minh trước. Nếu đã xác nhận tệp an toàn và cần thêm ngoại lệ cho thư mục Fonez:</p>
+            <ol>
+              <li>Mở <strong>Start</strong>, tìm và mở <strong>Windows Security</strong>.</li>
+              <li>Chọn <strong>Virus &amp; threat protection (Bảo vệ khỏi vi-rút và mối đe dọa)</strong>, rồi chọn <strong>Manage settings (Quản lý cài đặt)</strong>.</li>
+              <li>Kéo đến <strong>Exclusions (Loại trừ)</strong>, chọn <strong>Add or remove exclusions (Thêm hoặc xóa mục loại trừ)</strong>. Chọn <strong>Yes (Có)</strong> nếu Windows hỏi quyền thay đổi.</li>
+              <li>Chọn <strong>Add an exclusion (Thêm mục loại trừ)</strong>, rồi chọn <strong>Folder (Thư mục)</strong>.</li>
+              <li>Tìm đúng thư mục <strong>Fonez</strong> bạn đã tạo ở bước 2, bấm <strong>Select Folder (Chọn thư mục)</strong> và xác nhận nếu được hỏi.</li>
+              <li>Mở lại <strong>Fonez.exe</strong>. Nếu tệp đã bị xóa, tải lại vào thư mục này sau khi đã xác minh với bộ phận hỗ trợ.</li>
+            </ol>
+            <p class="install-note">Chỉ chọn thư mục Fonez, không chọn cả ổ đĩa hay thư mục Downloads. Defender sẽ bỏ qua việc quét theo thời gian thực trong thư mục được loại trừ. Không cần tắt Real-time protection. Để bỏ ngoại lệ, chọn thư mục trong danh sách rồi bấm <strong>Remove (Xóa)</strong>.</p>
+          </div>
+        </details>
+      </div>
+      <p class="download-support">Cần người hướng dẫn? Nhắn Zalo <a href="https://zalo.me/0989746792" target="_blank" rel="noopener">0989 746 792</a> hoặc <a href="https://zalo.me/0374685088" target="_blank" rel="noopener">0374 685 088</a>.</p>
+      <div class="download-action" data-download-action>
+        <div><p class="download-version" data-download-version>Windows 64-bit · v1.1.0 · 93,8 MB</p><p class="download-status" data-download-status role="status" aria-live="polite">Tải trực tiếp qua HTTPS</p></div>
+        <a class="button primary" data-download-file data-portable-url="https://fonez.duckdns.org/v1/app-updates/artifacts/8e5a787c2f792a16f299eb5953868409e92f31b3bca1d9acbe559513d1106db3.exe" href="https://fonez.duckdns.org/v1/app-updates/artifacts/8e5a787c2f792a16f299eb5953868409e92f31b3bca1d9acbe559513d1106db3.exe" download="Fonez.exe"><span data-download-label>Tải Portable</span> <span class="download-mark" aria-hidden="true"></span></a>
+      </div>
+    </section>
+
 
     <section class="details-source" id="details-bot-trading" aria-labelledby="details-bot-trading-title">
       <h2 id="details-bot-trading-title" tabindex="-1">Bot Trading</h2>

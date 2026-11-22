@@ -258,6 +258,7 @@ function setupFeatureDetails() {
     host.append(target);
     dialog.setAttribute("aria-labelledby", target.getAttribute("aria-labelledby"));
     dialog.showModal();
+    dialog.scrollTop = 0;
     syncModalScroll();
     target.querySelector("h2").focus({ preventScroll: true });
     if (updateHistory) history.pushState(null, "", "#" + target.id);
@@ -314,6 +315,98 @@ function setupFeatureDetails() {
   window.addEventListener("popstate", openFromHash);
   window.addEventListener("hashchange", openFromHash);
   openFromHash();
+}
+
+function setupDownloads() {
+  const guide = document.getElementById("details-download");
+  const link = guide?.querySelector("[data-download-file]");
+  const version = guide?.querySelector("[data-download-version]");
+  const status = guide?.querySelector("[data-download-status]");
+  const label = guide?.querySelector("[data-download-label]");
+  const options = guide?.querySelectorAll('input[name="download-edition"]');
+  if (!link || !version || !status || !label || !options?.length) return;
+
+  guide.classList.add("downloads-ready");
+  const fallback = link.dataset.portableUrl;
+  const releases = {
+    portable: { url: fallback, description: "Windows 64-bit · v1.1.0 · 93,8 MB", status: "Tải trực tiếp qua HTTPS", checkedAt: 0 },
+    msi: { url: "https://fonez.duckdns.org/v1/app-installers/download", description: "Bộ cài Windows 64-bit", status: "Tải MSI đang được phát hành trên Gateway", checkedAt: 0 },
+  };
+  const pending = new Set();
+  let selected = "portable";
+
+  function render() {
+    const release = releases[selected];
+    for (const option of options) option.checked = option.value === selected;
+    document.getElementById("portable-instructions").hidden = selected !== "portable";
+    document.getElementById("msi-instructions").hidden = selected !== "msi";
+    version.textContent = release.description;
+    status.textContent = pending.has(selected) ? "Đang kiểm tra phiên bản…" : release.status;
+    label.textContent = release.unavailable ? "Chưa có bản MSI" : selected === "portable" ? "Tải Portable" : "Tải bản MSI";
+    link.removeAttribute("aria-disabled");
+    if (release.unavailable) {
+      link.removeAttribute("href");
+      link.setAttribute("aria-disabled", "true");
+      link.removeAttribute("download");
+    } else {
+      link.href = release.url;
+      if (selected === "portable") link.setAttribute("download", "Fonez.exe");
+      else link.removeAttribute("download");
+    }
+  }
+
+  async function checkRelease(edition) {
+    const release = releases[edition];
+    if (location.protocol === "file:" || pending.has(edition) || Date.now() - release.checkedAt < 60000) return;
+    pending.add(edition);
+    render();
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 10000);
+    try {
+      const response = await fetch(`./api/download?metadata=1&format=${edition}`, { cache: "no-store", signal: controller.signal });
+      if (edition === "msi" && response.status === 204) {
+        Object.assign(release, { unavailable: true, description: "Bộ cài Windows 64-bit", status: "MSI chưa được phát hành. Bạn có thể dùng bản Portable.", checkedAt: Date.now() });
+        return;
+      }
+      if (!response.ok) throw new Error("Release unavailable");
+      const data = await response.json();
+      const path = edition === "portable" ? "app-updates" : "app-installers";
+      const extension = edition === "portable" ? "exe" : "msi";
+      const expected = new RegExp(`^https://fonez\\.duckdns\\.org/v1/${path}/artifacts/[a-f0-9]{64}\\.${extension}$`);
+      if (!expected.test(data.url) || typeof data.version !== "string" ||
+          !/^[0-9]+\.[0-9]+\.[0-9]+$/.test(data.version) || !Number.isSafeInteger(data.size) || data.size <= 0) throw new Error("Invalid release");
+      const size = (data.size / 1024 / 1024).toLocaleString("vi-VN", { maximumFractionDigits: 1 });
+      Object.assign(release, { url: data.url, unavailable: false,
+        description: edition === "portable" ? `Windows 64-bit · v${data.version} · ${size} MB` : `MSI ${data.version} · Windows 64-bit · ${size} MB`,
+        status: "Phiên bản mới nhất · Tải trực tiếp qua HTTPS", checkedAt: Date.now() });
+    } catch {
+      if (edition === "portable") {
+        Object.assign(release, { url: fallback, description: "Windows 64-bit · v1.1.0 · 93,8 MB", status: "Chưa kiểm tra được bản mới hơn. Bạn vẫn có thể tải v1.1.0." });
+      } else {
+        // Never invent a release or fall back to downloading an EXE for an MSI choice.
+        release.status = "Chưa kiểm tra được phiên bản MSI. Nút tải sẽ hỏi Gateway khi bạn bấm.";
+      }
+    } finally {
+      clearTimeout(timeout);
+      pending.delete(edition);
+      render();
+    }
+  }
+
+  for (const option of options) option.addEventListener("change", () => {
+    if (!option.checked) return;
+    selected = option.value;
+    render();
+    checkRelease(selected);
+  });
+  document.addEventListener("click", (event) => {
+    if (event.target.closest("[data-detail-link]")?.hash === "#details-download") checkRelease(selected);
+  });
+  window.addEventListener("hashchange", () => {
+    if (location.hash === "#details-download") checkRelease(selected);
+  });
+  render();
+  if (location.hash === "#details-download") checkRelease(selected);
 }
 
 function setupHeroParticles() {
@@ -446,4 +539,5 @@ function setupHeroParticles() {
 }
 
 setupFeatureDetails();
+setupDownloads();
 setupHeroParticles();
