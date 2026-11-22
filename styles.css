@@ -98,6 +98,18 @@ a:focus-visible, button:focus-visible, [tabindex]:focus-visible { outline: 3px s
 .scene-research .product-image { width: 86%; }
 .scene-plugin { background: #f2f4f8; }
 .scene-plugin .product-image { width: 78%; }
+.scene-telegram { background: #f1f5f9; }
+.scene-telegram::before { background: radial-gradient(ellipse at 25% 30%, #d0e5fa, transparent 65%), radial-gradient(ellipse at 85% 80%, #e0e2f4, transparent 60%); }
+.telegram-preview { position: relative; width: min(100%, 372px); padding: clamp(18px, 2.2vw, 30px); background: white; border: 1px solid #e2e8ef; border-radius: 24px; box-shadow: 0 18px 45px -24px #52687f70; }
+.telegram-preview-header { display: flex; align-items: center; gap: 12px; padding-bottom: 23px; border-bottom: 1px solid var(--line); }
+.telegram-mark { display: grid; place-items: center; flex: none; width: 44px; height: 44px; border-radius: 50%; color: white; background: #2a9bd1; }
+.telegram-preview-header strong { display: block; font-size: 19px; font-weight: 550; }
+.telegram-preview-header span:not(.telegram-mark) { display: block; margin-top: 3px; font-size: 13px; color: var(--muted); }
+.telegram-message { padding-block: 24px 20px; font-size: 15px; }
+.telegram-message strong { font-weight: 550; }
+.telegram-message p { margin-top: 8px; font-size: 14px; color: var(--muted); }
+.telegram-menu { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 7px; list-style: none; padding: 0; }
+.telegram-menu li { display: grid; place-items: center; min-height: 44px; padding: 8px 5px; background: #edf4fa; color: #35627e; border-radius: 7px; text-align: center; font-size: 13px; line-height: 1.35; }
 .connections { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 32px; padding-block: 120px; }
 .broker-names { display: grid; grid-template-columns: 1fr 1fr; align-items: center; list-style: none; gap: 30px; padding: 55px 35px; border-block: 1px solid var(--line); }
 .broker-names li { text-align: center; font-weight: 500; font-size: 38px; letter-spacing: -.03em; padding: 20px 0; }

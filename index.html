@@ -11,7 +11,7 @@
   <link rel="preload" href="./fonts/google-sans-flex-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="./fonts/google-sans-flex-vietnamese.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="./fonts/google-sans-flex.css">
-  <link rel="stylesheet" href="./styles.css?v=20261122-affiliate-nav">
+  <link rel="stylesheet" href="./styles.css?v=20261122-telegram-control">
   <link rel="stylesheet" href="./motion.css?v=20261121">
   <script src="./app.js?v=20261121-portable-msi" defer onload="document.documentElement.classList.remove('landing-loading')" onerror="document.documentElement.classList.remove('landing-loading')"></script>
 </head>
@@ -95,8 +95,9 @@
     </section>
     <section class="intro-section wrap" id="system-structure" aria-labelledby="intro-title">
       <h2 id="intro-title">Một nền tảng cho ý tưởng<br>và phiên giao dịch của bạn.</h2>
-      <p>Bạn quen viết chiến lược trên AmiBroker? Với Fonez, bạn có thể viết AFL, chạy backtest và gửi lệnh thẳng đến công ty chứng khoán ngay trong một ứng dụng.</p>
-      <ul class="hero-highlights" aria-label="Điểm nổi bật của Fonez"><li>Dữ liệu thị trường <strong>miễn phí trọn đời</strong></li><li id="flow">Gửi lệnh trực tiếp <strong>chưa tới 1 giây</strong></li><li>Quản lý bot qua <strong>Telegram</strong></li></ul>
+      <p>Viết chiến lược bằng AFL ngay trong Fonez, không cần thông qua AmiBroker. Bạn cũng có thể sử dụng Python hoặc Pine Script (TradingView). Nếu chưa biết lập trình, chế độ Visual giúp bạn xây dựng chiến lược mà không cần viết code.</p>
+      <p>Từ tạo chiến lược, chạy backtest đến gửi lệnh trực tiếp tới công ty chứng khoán — tất cả đều trong cùng một ứng dụng.</p>
+      <ul class="hero-highlights" aria-label="Điểm nổi bật của Fonez"><li>Dữ liệu thị trường <strong>miễn phí trọn đời</strong></li><li id="flow">Gửi lệnh trực tiếp <strong>chưa tới 1 giây</strong></li><li>Quản lý bot qua <strong><a href="#telegram-control">Telegram Control</a></strong></li></ul>
     </section>
     <div class="wrap product-rows" id="tinh-nang">
 
@@ -164,6 +165,28 @@
         <figure class="product-visual scene-plugin" data-reveal>
           <a class="product-image" href="./media/amibroker-allocation.webp" target="_blank" rel="noopener" aria-label="Phóng to giao diện AmiBroker Plugin"><img src="./media/amibroker-allocation.webp" width="694" height="571" loading="lazy" alt="Trong cửa sổ phân bổ của plugin, bot 5M Complex được đặt khối lượng một hợp đồng cho tài khoản Demo thứ nhất và ba hợp đồng cho tài khoản thứ hai."></a>
           <figcaption>Đặt khối lượng riêng cho hai tài khoản Demo</figcaption>
+        </figure>
+      </section>
+      <section class="product-row" id="telegram-control" aria-labelledby="telegram-control-title">
+        <div class="product-copy" data-reveal>
+          <h2 id="telegram-control-title">Telegram Control</h2>
+          <p>Theo dõi Fonez ngay trên điện thoại. Xem tài khoản và vị thế, đặt lệnh tay, quản lý bot hay hẹn giờ vận hành — tất cả ngay trong Telegram.</p>
+          <a class="button see-more" href="#details-telegram-control" data-detail-link aria-label="Xem thêm về Telegram Control">Xem thêm</a>
+        </div>
+        <figure class="product-visual scene-telegram" data-reveal aria-labelledby="telegram-preview-caption">
+          <div class="telegram-preview">
+            <div class="telegram-preview-header">
+              <span class="telegram-mark" aria-hidden="true"><svg viewBox="0 0 24 24" width="25" height="25"><path fill="currentColor" d="M20.5 4.1 17.3 20c-.2.9-.8 1.1-1.6.7l-4.9-3.6-2.4 2.3c-.3.3-.5.5-1 .5l.4-5.1L17 6.5c.4-.4-.1-.6-.6-.3L5 13.4.2 11.9c-.9-.3-.9-.9.2-1.3L19.2 3.4c.9-.3 1.6.2 1.3.7Z"/></svg></span>
+              <div><strong>Fonez</strong><span>Telegram Control</span></div>
+            </div>
+            <div class="telegram-message"><strong>FONEZ · Menu điều khiển</strong><p>Bạn muốn kiểm tra điều gì?</p></div>
+            <ul class="telegram-menu" aria-label="Một số mục trong menu Telegram Control">
+              <li>Chi tiết tài khoản</li><li>Vị thế &amp; NAV</li>
+              <li>Quản lý bot</li><li>Sổ lệnh CTCK</li>
+              <li>Đặt lệnh tay</li><li>Đối soát vị thế</li>
+            </ul>
+          </div>
+          <figcaption id="telegram-preview-caption">Minh họa menu điều khiển trong Telegram</figcaption>
         </figure>
       </section>
     </div>
@@ -395,7 +418,22 @@
             <div><dt>Chọn số hợp đồng cho từng tài khoản</dt><dd>Cùng một tín hiệu mở vị thế, bạn có thể đặt một hợp đồng cho tài khoản này và ba hợp đồng cho tài khoản khác. Plugin hiện hỗ trợ lệnh giới hạn (LO) trên Entrade Demo trong phiên khớp lệnh liên tục.</dd></div>
             <div><dt>Dùng nhiều bot trên cùng tài khoản</dt><dd>Fonez ghi riêng số hợp đồng đã khớp của từng bot. Khi một bot báo thoát, Fonez chỉ gửi lệnh đóng cho phần vị thế của bot đó.</dd></div>
             <div><dt>Tra lại tín hiệu và kết quả khớp lệnh</dt><dd>Xem lúc nào AmiBroker phát tín hiệu, lệnh đã gửi đến tài khoản nào và đã khớp bao nhiêu. Bạn có thể chọn nơi nhận thông báo Telegram hoặc Zalo riêng cho từng bot.</dd></div></dl>
-    </section><section class="details-source" id="details-connect" aria-labelledby="details-connect-title"><h2 id="details-connect-title" tabindex="-1">Công ty chứng khoán</h2><p class="detail-intro">Nhận dữ liệu giá từ DNSE hoặc SSI FastConnect và kết nối tài khoản để đặt lệnh trong Fonez.</p><dl class="product-facts">
+    </section>
+    <section class="details-source" id="details-telegram-control" aria-labelledby="details-telegram-control-title">
+      <h2 id="details-telegram-control-title" tabindex="-1">Telegram Control</h2>
+      <p class="detail-intro">Không cần ngồi trước máy tính để theo dõi phiên giao dịch. Kết nối Telegram với Fonez để kiểm tra tài khoản, điều khiển bot và xử lý các việc cần thiết ngay trên điện thoại.</p>
+      <dl class="product-facts">
+        <div><dt>Xem tài khoản, vị thế và lệnh đang chờ</dt><dd>Kiểm tra số dư, sức mua, NAV và vị thế của các tài khoản đã kết nối. Mở sổ lệnh tại công ty chứng khoán để xem tình trạng lệnh và hủy lệnh chờ khi cần.</dd></div>
+        <div><dt>Đặt lệnh tay từ Telegram</dt><dd>Chọn một hoặc nhiều tài khoản, hợp đồng, chiều giao dịch, khối lượng và loại lệnh. Xem lại thông tin rồi xác nhận trước khi gửi lệnh tới công ty chứng khoán.</dd></div>
+        <div><dt>Quản lý bot từ xa</dt><dd>Thêm hoặc khôi phục bot đã lưu, gắn tài khoản và chỉnh cấu hình. Bạn có thể ngừng mở vị thế mới, cho phép mở lại hoặc ngừng giao dịch, đồng thời chọn cách xử lý vị thế đang theo dõi.</dd></div>
+        <div><dt>Hẹn giờ vận hành</dt><dd>Hẹn bot ngừng hoặc cho phép mở vị thế mới, ngừng giao dịch hay đóng bot. Bạn cũng có thể hẹn tắt DATA hoặc thoát Fonez. Lịch ngừng và cho phép mở mới có thể lặp lại theo các lựa chọn trong menu.</dd></div>
+        <div><dt>Nhận báo cáo kèm biểu đồ</dt><dd>Xem báo cáo vị thế của bot và ảnh biểu đồ ngay trong cuộc trò chuyện. Đối chiếu vị thế bot đang theo dõi với vị thế tại công ty chứng khoán, đồng thời chọn nơi nhận thông báo cho từng bot.</dd></div>
+        <div><dt>Biết khi Fonez mất kết nối</dt><dd>Bật cảnh báo để máy chủ Gateway gửi tin khi không còn nhận được tín hiệu từ Fonez, kể cả khi máy chạy ứng dụng mất mạng hoặc tắt. Chọn nhận tin theo giờ giao dịch hoặc 24/7; nhận thêm thông báo khi kết nối được khôi phục.</dd></div>
+        <div><dt>Xác thực tài khoản và cập nhật ứng dụng</dt><dd>Chủ máy có thể xác thực lại tài khoản giao dịch và kiểm tra, tải bản cập nhật từ Telegram. Chọn cập nhật rồi khởi động lại hoặc cài ở lần mở Fonez tiếp theo.</dd></div>
+        <div><dt>Bạn quyết định quyền điều khiển</dt><dd>Cấp quyền xem, đặt lệnh hoặc quản lý bot theo từng người và tài khoản. Các thao tác điều khiển cần được xem trước và xác nhận. Để nhận lệnh từ Telegram và chạy lịch hẹn, Fonez phải đang mở trên máy tính hoặc VPS có kết nối Internet.</dd></div>
+      </dl>
+    </section>
+    <section class="details-source" id="details-connect" aria-labelledby="details-connect-title"><h2 id="details-connect-title" tabindex="-1">Công ty chứng khoán</h2><p class="detail-intro">Nhận dữ liệu giá từ DNSE hoặc SSI FastConnect và kết nối tài khoản để đặt lệnh trong Fonez.</p><dl class="product-facts">
           <div><dt>DNSE</dt><dd>Kết nối DNSE Real, DNSE Master SACO hoặc Entrade Real. Nếu muốn thử đặt lệnh trước, bạn có thể dùng Entrade Demo.</dd></div>
           <div><dt>SSI</dt><dd>Kết nối tài khoản qua SSI FastConnect Trading v2 hoặc v3.</dd></div>
           <div><dt>TCBS</dt><dd>Đặt lệnh phái sinh qua tài khoản TCBS iFlash.</dd></div>

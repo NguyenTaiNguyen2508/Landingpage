@@ -47,4 +47,12 @@ Mục `#affiliate` giới thiệu ngắn chương trình; `#details-affiliate` m
 
 Chính sách chung tại thời điểm đối chiếu: chương trình đang bật; tặng 7 ngày Realtime khi đăng ký qua mã hợp lệ; 30% cho đơn Realtime trực tiếp đầu tiên đủ điều kiện từ 100.000đ thực nhận; 10% cho Realtime tiếp theo đủ điều kiện và credit AI; 5% cấp hai. Realtime dưới ngưỡng không có hoa hồng trực tiếp và không tiêu thụ mức đầu tiên. Hoa hồng chờ đối soát trước khi chi trả; người nhận cần bổ sung đủ thông tin ngân hàng. Không cam kết lịch trả, ngưỡng rút hay tự động chuyển tiền khi hệ thống không quy định.
 
-Đây là nội dung tĩnh, không tự đồng bộ cấu hình Gateway và không thay đổi chính sách của app. Khi đổi tỷ lệ, điều kiện hoặc số ngày thưởng, cập nhật cả phần giới thiệu và popover, cùng ngày đối chiếu. Chính sách riêng và thay đổi về sau cần xem lại trong Tài khoản Fonez → Chương trình giới thiệu. Các luồng Portable/MSI và tám popover tính năng cũ được giữ nguyên.
+Đây là nội dung tĩnh, không tự đồng bộ cấu hình Gateway và không thay đổi chính sách của app. Khi đổi tỷ lệ, điều kiện hoặc số ngày thưởng, cập nhật cả phần giới thiệu và popover, cùng ngày đối chiếu. Chính sách riêng và thay đổi về sau cần xem lại trong Tài khoản Fonez → Chương trình giới thiệu.
+
+## Giới thiệu chiến lược và Telegram Control
+
+Phần mở đầu nói rõ có thể viết AFL trực tiếp trong Fonez, không cần AmiBroker; hỗ trợ thêm Python, Pine Script (TradingView) và chế độ Visual. AmiBroker Plugin vẫn là lựa chọn riêng cho người muốn giữ chiến lược chạy trên AmiBroker.
+
+Mục `#telegram-control` và popover `#details-telegram-control` dùng cùng bố cục và cơ chế “Xem thêm” của các tính năng. Hình menu là minh họa bằng HTML/CSS, ghi rõ là minh họa và dùng tên mục có thật; không phải ảnh chụp tài khoản hay trạng thái giao dịch trực tiếp.
+
+Nội dung Telegram đối chiếu mã nguồn Fonez ngày **22/11/2026**: `telegram_control_views.py`, `telegram_control_service.py`, `telegram_live_control.py`, `telegram_operations_menu.py`, `telegram_account_auth.py`, `telegram_app_updates.py` và hướng dẫn cảnh báo mất kết nối trong `ai_gateway/README.md`. Bao gồm tra cứu tài khoản/vị thế/sổ lệnh, đặt lệnh tay, quản lý bot, hẹn giờ, báo cáo và biểu đồ, cảnh báo mất kết nối, xác thực tài khoản và cập nhật ứng dụng. Quyền thao tác phụ thuộc cấu hình đã cấp trong Fonez. Điều khiển và lịch hẹn cần ứng dụng đang mở trên máy có mạng; cảnh báo mất kết nối do Gateway theo dõi riêng sau khi người dùng bật.
