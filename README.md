@@ -22,7 +22,7 @@ Mục video có liên kết đến [kênh FONEZ Platform](https://www.youtube.co
 
 ## Tải trực tiếp và hướng dẫn mở ứng dụng
 
-Các nút **Tải Fonez** mở cùng một popover hướng dẫn. Nút **Tải Fonez.exe** bên trong tải trực tiếp qua HTTPS từ Gateway Oracle, không mở Google Drive. Windows có thể vẫn hỏi vị trí lưu hoặc cảnh báo về tệp tải xuống theo cài đặt của người dùng.
+Các nút **Tải Fonez** mở cùng một popover hướng dẫn. Ba lựa chọn theo thứ tự **Microsoft Store → MSI → Portable**; Microsoft Store được chọn sẵn. Nút **Mở Microsoft Store** mở [trang Fonez do người dùng cung cấp](https://apps.microsoft.com/detail/9NPPRC87WG8S?hl=neutral&gl=VN&ocid=pdpshare) trong tab mới để tiếp tục tải/cài, không giả lập đây là URL tệp trực tiếp. Hai bản MSI và Portable vẫn tải qua HTTPS từ Gateway Oracle. Windows có thể hỏi vị trí lưu hoặc cảnh báo về tệp tải xuống theo cài đặt của người dùng.
 
 - Trên Vercel, `app.js` gọi `/api/download?metadata=1` khi mở hướng dẫn để cập nhật phiên bản, dung lượng và URL tải. Function đọc manifest `stable` ở Gateway phía server vì Gateway chưa cho phép CORS từ landing. File EXE đi thẳng từ Oracle đến người tải, không đi qua Vercel.
 - `/api/download` (không có `metadata=1`) chuyển hướng HTTP 302 tới bản stable hiện tại. URL đầu ra bị giới hạn ở artifact HTTPS của Gateway; không nhận URL đích từ người dùng.
@@ -31,9 +31,12 @@ Các nút **Tải Fonez** mở cùng một popover hướng dẫn. Nút **Tải 
 
 Nguồn đối chiếu cho nội dung hướng dẫn (không thay thế các bước trong popover): [Smart App Control – Quantrimang](https://quantrimang.com/cong-nghe/windows-11-phong-ngua-phan-mem-doc-hai-188265), [ngoại lệ Defender – Quantrimang](https://quantrimang.com/cong-nghe/them-ngoai-le-trong-windows-defender-172110), [Smart App Control – Microsoft](https://support.microsoft.com/en-us/windows/security/threat-malware-protection/smart-app-control-frequently-asked-questions), [Virus & threat protection – Microsoft](https://support.microsoft.com/en-us/windows/security/threat-malware-protection/virus-and-threat-protection-in-the-windows-security-app). Thông tin bật lại Smart App Control ưu tiên tài liệu Microsoft mới hơn: các bản Windows mới hỗ trợ bật lại mà không cần cài lại hệ điều hành.
 
-## Hai bản Portable và MSI
+## Microsoft Store, MSI và Portable
 
-Popover tải có hai lựa chọn song song: **Portable** (EXE, không cài đặt) và **Bản cài đặt MSI** (chọn thư mục, mở từ Start Menu). Chuyển lựa chọn sẽ đổi đúng hướng dẫn và nút tải; các phản hồi metadata đến muộn không được đổi lựa chọn người dùng.
+Popover tải có ba lựa chọn theo thứ tự **Microsoft Store**, **Bản cài đặt MSI** (chọn thư mục, mở từ Start Menu), **Portable** (EXE, không cài đặt). Thứ tự hướng dẫn khi JavaScript tắt cũng giống thứ tự lựa chọn. Chuyển lựa chọn sẽ đổi đúng hướng dẫn và nút tải; các phản hồi metadata đến muộn không được đổi lựa chọn người dùng.
+
+- Microsoft Store dùng đúng URL sản phẩm `9NPPRC87WG8S`, được chọn sẵn và không gọi API metadata Gateway. Hướng dẫn có ba bước mở trang, tải/cài theo Microsoft Store, rồi mở Fonez. Không gán phiên bản hoặc dung lượng của bản Portable cho Store. Chuyển về MSI/Portable bỏ thuộc tính mở tab mới; Portable giữ tên tệp tải `Fonez.exe`.
+- Hướng dẫn xử lý cảnh báo Windows chỉ hiện khi chọn MSI hoặc Portable. Cả ba lựa chọn đều có liên kết dùng được khi JavaScript tắt.
 
 - `/api/download?format=portable` giữ nguyên kênh EXE; bỏ `format` cũng mặc định Portable để tương thích các link cũ.
 - `/api/download?format=msi` đọc `/v1/app-installers/stable`, kiểm tra định dạng MSI và chỉ trả URL artifact `.msi` của Gateway. Thêm `metadata=1` để nhận JSON thay vì chuyển hướng.

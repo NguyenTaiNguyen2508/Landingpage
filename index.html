@@ -11,9 +11,9 @@
   <link rel="preload" href="./fonts/google-sans-flex-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="./fonts/google-sans-flex-vietnamese.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="./fonts/google-sans-flex.css">
-  <link rel="stylesheet" href="./styles.css?v=20261122-telegram-header">
+  <link rel="stylesheet" href="./styles.css?v=20261123-store-download">
   <link rel="stylesheet" href="./motion.css?v=20261121">
-  <script src="./app.js?v=20261121-portable-msi" defer onload="document.documentElement.classList.remove('landing-loading')" onerror="document.documentElement.classList.remove('landing-loading')"></script>
+  <script src="./app.js?v=20261123-store-download" defer onload="document.documentElement.classList.remove('landing-loading')" onerror="document.documentElement.classList.remove('landing-loading')"></script>
 </head>
 <body id="top">
   <a class="skip-link" href="#overview">Đến nội dung chính</a>
@@ -287,20 +287,21 @@
 
     <section class="details-source download-guide" id="details-download" aria-labelledby="details-download-title">
       <h2 id="details-download-title" tabindex="-1">Bắt đầu với Fonez</h2>
-      <p class="detail-intro">Hai cách dùng Fonez trên Windows 64-bit. Chọn bản phù hợp rồi xem hướng dẫn trước khi tải nhé.</p>
+      <p class="detail-intro">Ba cách dùng Fonez trên Windows 64-bit. Cài từ Microsoft Store, dùng bộ cài MSI hoặc tải bản Portable để mở ngay.</p>
       <fieldset class="download-options">
         <legend>Chọn bản tải xuống</legend>
-        <label class="download-option"><input type="radio" name="download-edition" value="portable" checked aria-controls="portable-instructions"><span><strong>Portable</strong><span>Tải về và mở ngay, không cần cài đặt.</span></span></label>
+        <label class="download-option"><input type="radio" name="download-edition" value="store" checked aria-controls="store-instructions"><span><strong>Microsoft Store</strong><span>Cài Fonez từ Microsoft Store.</span></span></label>
         <label class="download-option"><input type="radio" name="download-edition" value="msi" aria-controls="msi-instructions"><span><strong>Bản cài đặt MSI</strong><span>Chọn thư mục cài, mở Fonez từ Start Menu.</span></span></label>
+        <label class="download-option"><input type="radio" name="download-edition" value="portable" aria-controls="portable-instructions"><span><strong>Portable</strong><span>Tải về và mở ngay, không cần cài đặt.</span></span></label>
       </fieldset>
-      <section class="edition-instructions" id="portable-instructions" aria-labelledby="portable-instructions-title">
-      <h3 id="portable-instructions-title" class="edition-heading">Dùng bản Portable</h3>
-      <ol class="install-steps">
-        <li><h3>Tải ứng dụng</h3><p>Chọn <strong>Tải Portable</strong> bên dưới. Tệp được tải trực tiếp từ máy chủ Fonez. Nếu trình duyệt hỏi nơi lưu, chọn <strong>Lưu (Save)</strong>.</p></li>
-        <li><h3>Đặt Fonez vào thư mục riêng</h3><p>Tạo thư mục <strong>Fonez</strong> ở nơi bạn muốn lưu ứng dụng, chẳng hạn trong <strong>Tài liệu (Documents)</strong>, rồi chuyển tệp <strong>Fonez.exe</strong> vào đó.</p></li>
-        <li><h3>Mở ứng dụng</h3><p>Nhấp đúp vào <strong>Fonez.exe</strong>. Nếu mở được bình thường, bạn có thể dùng ngay. Nếu Windows chặn ứng dụng, chọn đúng trường hợp bên dưới để xem cách xử lý.</p></li>
-      </ol>
-      <a class="button primary no-script-download" href="https://fonez.duckdns.org/v1/app-updates/artifacts/8e5a787c2f792a16f299eb5953868409e92f31b3bca1d9acbe559513d1106db3.exe" download="Fonez.exe">Tải Portable</a>
+      <section class="edition-instructions" id="store-instructions" aria-labelledby="store-instructions-title">
+        <h3 id="store-instructions-title" class="edition-heading">Cài Fonez từ Microsoft Store</h3>
+        <ol class="install-steps">
+          <li><h3>Mở trang Fonez</h3><p>Chọn <strong>Mở Microsoft Store</strong> bên dưới. Trang Fonez trên Microsoft Store sẽ mở trong một tab mới.</p></li>
+          <li><h3>Tải và cài đặt</h3><p>Chọn nút tải hoặc cài đặt trên trang và làm theo hướng dẫn. Nếu trình duyệt hỏi mở ứng dụng <strong>Microsoft Store</strong>, chọn mở để tiếp tục cài Fonez.</p></li>
+          <li><h3>Bắt đầu dùng Fonez</h3><p>Cài xong, mở ứng dụng từ Microsoft Store hoặc vào <strong>Start</strong>, tìm <strong>Fonez</strong> và chọn mở.</p></li>
+        </ol>
+        <a class="button primary no-script-download" href="https://apps.microsoft.com/detail/9NPPRC87WG8S?hl=neutral&amp;gl=VN&amp;ocid=pdpshare" target="_blank" rel="noopener">Mở Microsoft Store</a>
       </section>
       <section class="edition-instructions" id="msi-instructions" aria-labelledby="msi-instructions-title">
         <h3 id="msi-instructions-title" class="edition-heading">Cài Fonez bằng MSI</h3>
@@ -313,7 +314,16 @@
         <p class="install-note">Đã cài Fonez bằng MSI? Bạn có thể cập nhật trong ứng dụng. Chỉ tải lại bộ cài khi muốn cài mới hoặc cài lại; không chép bản Portable đè vào thư mục cài đặt.</p>
         <a class="button primary no-script-download" href="https://fonez.duckdns.org/v1/app-installers/download">Tải bản MSI</a>
       </section>
-      <div class="install-troubleshooting">
+      <section class="edition-instructions" id="portable-instructions" aria-labelledby="portable-instructions-title">
+        <h3 id="portable-instructions-title" class="edition-heading">Dùng bản Portable</h3>
+        <ol class="install-steps">
+          <li><h3>Tải ứng dụng</h3><p>Chọn <strong>Tải Portable</strong> bên dưới. Tệp được tải trực tiếp từ máy chủ Fonez. Nếu trình duyệt hỏi nơi lưu, chọn <strong>Lưu (Save)</strong>.</p></li>
+          <li><h3>Đặt Fonez vào thư mục riêng</h3><p>Tạo thư mục <strong>Fonez</strong> ở nơi bạn muốn lưu ứng dụng, chẳng hạn trong <strong>Tài liệu (Documents)</strong>, rồi chuyển tệp <strong>Fonez.exe</strong> vào đó.</p></li>
+          <li><h3>Mở ứng dụng</h3><p>Nhấp đúp vào <strong>Fonez.exe</strong>. Nếu mở được bình thường, bạn có thể dùng ngay. Nếu Windows chặn ứng dụng, chọn đúng trường hợp bên dưới để xem cách xử lý.</p></li>
+        </ol>
+        <a class="button primary no-script-download" href="https://fonez.duckdns.org/v1/app-updates/artifacts/8e5a787c2f792a16f299eb5953868409e92f31b3bca1d9acbe559513d1106db3.exe" download="Fonez.exe">Tải Portable</a>
+      </section>
+      <div class="install-troubleshooting" data-download-troubleshooting>
         <h3>Nếu Windows hiện cảnh báo</h3>
         <p>Chỉ thực hiện khi bạn đã xác nhận tệp tải từ Fonez. Không phải cảnh báo nào cũng là báo nhầm.</p>
         <details>
@@ -358,8 +368,8 @@
       </div>
       <p class="download-support">Cần người hướng dẫn? Nhắn Zalo <a href="https://zalo.me/0989746792" target="_blank" rel="noopener">0989 746 792</a> hoặc <a href="https://zalo.me/0374685088" target="_blank" rel="noopener">0374 685 088</a>.</p>
       <div class="download-action" data-download-action>
-        <div><p class="download-version" data-download-version>Windows 64-bit · v1.1.0 · 93,8 MB</p><p class="download-status" data-download-status role="status" aria-live="polite">Tải trực tiếp qua HTTPS</p></div>
-        <a class="button primary" data-download-file data-portable-url="https://fonez.duckdns.org/v1/app-updates/artifacts/8e5a787c2f792a16f299eb5953868409e92f31b3bca1d9acbe559513d1106db3.exe" href="https://fonez.duckdns.org/v1/app-updates/artifacts/8e5a787c2f792a16f299eb5953868409e92f31b3bca1d9acbe559513d1106db3.exe" download="Fonez.exe"><span data-download-label>Tải Portable</span> <span class="download-mark" aria-hidden="true"></span></a>
+        <div><p class="download-version" data-download-version>Fonez trên Microsoft Store</p><p class="download-status" data-download-status role="status" aria-live="polite">Mở trang Microsoft Store trong tab mới</p></div>
+        <a class="button primary" data-download-file data-store-url="https://apps.microsoft.com/detail/9NPPRC87WG8S?hl=neutral&amp;gl=VN&amp;ocid=pdpshare" data-portable-url="https://fonez.duckdns.org/v1/app-updates/artifacts/8e5a787c2f792a16f299eb5953868409e92f31b3bca1d9acbe559513d1106db3.exe" href="https://apps.microsoft.com/detail/9NPPRC87WG8S?hl=neutral&amp;gl=VN&amp;ocid=pdpshare" target="_blank" rel="noopener"><span data-download-label>Mở Microsoft Store</span> <span class="download-mark" aria-hidden="true"></span></a>
       </div>
     </section>
 

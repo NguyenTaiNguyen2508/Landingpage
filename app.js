@@ -324,26 +324,35 @@ function setupDownloads() {
   const status = guide?.querySelector("[data-download-status]");
   const label = guide?.querySelector("[data-download-label]");
   const options = guide?.querySelectorAll('input[name="download-edition"]');
+  const troubleshooting = guide?.querySelector("[data-download-troubleshooting]");
   if (!link || !version || !status || !label || !options?.length) return;
 
   guide.classList.add("downloads-ready");
   const fallback = link.dataset.portableUrl;
   const releases = {
+    store: { url: link.dataset.storeUrl, description: "Fonez trên Microsoft Store", status: "Mở trang Microsoft Store trong tab mới", label: "Mở Microsoft Store" },
     portable: { url: fallback, description: "Windows 64-bit · v1.1.0 · 93,8 MB", status: "Tải trực tiếp qua HTTPS", checkedAt: 0 },
     msi: { url: "https://fonez.duckdns.org/v1/app-installers/download", description: "Bộ cài Windows 64-bit", status: "Tải MSI đang được phát hành trên Gateway", checkedAt: 0 },
   };
   const pending = new Set();
-  let selected = "portable";
+  let selected = "store";
 
   function render() {
     const release = releases[selected];
     for (const option of options) option.checked = option.value === selected;
-    document.getElementById("portable-instructions").hidden = selected !== "portable";
-    document.getElementById("msi-instructions").hidden = selected !== "msi";
+    for (const option of options) document.getElementById(option.getAttribute("aria-controls")).hidden = option.value !== selected;
+    if (troubleshooting) troubleshooting.hidden = selected === "store";
     version.textContent = release.description;
     status.textContent = pending.has(selected) ? "Đang kiểm tra phiên bản…" : release.status;
-    label.textContent = release.unavailable ? "Chưa có bản MSI" : selected === "portable" ? "Tải Portable" : "Tải bản MSI";
+    label.textContent = release.unavailable ? "Chưa có bản MSI" : release.label || (selected === "portable" ? "Tải Portable" : "Tải bản MSI");
     link.removeAttribute("aria-disabled");
+    if (selected === "store") {
+      link.setAttribute("target", "_blank");
+      link.setAttribute("rel", "noopener");
+    } else {
+      link.removeAttribute("target");
+      link.removeAttribute("rel");
+    }
     if (release.unavailable) {
       link.removeAttribute("href");
       link.setAttribute("aria-disabled", "true");
@@ -356,6 +365,7 @@ function setupDownloads() {
   }
 
   async function checkRelease(edition) {
+    if (edition === "store") return;
     const release = releases[edition];
     if (location.protocol === "file:" || pending.has(edition) || Date.now() - release.checkedAt < 60000) return;
     pending.add(edition);
@@ -365,7 +375,7 @@ function setupDownloads() {
     try {
       const response = await fetch(`./api/download?metadata=1&format=${edition}`, { cache: "no-store", signal: controller.signal });
       if (edition === "msi" && response.status === 204) {
-        Object.assign(release, { unavailable: true, description: "Bộ cài Windows 64-bit", status: "MSI chưa được phát hành. Bạn có thể dùng bản Portable.", checkedAt: Date.now() });
+        Object.assign(release, { unavailable: true, description: "Bộ cài Windows 64-bit", status: "MSI chưa được phát hành. Bạn có thể cài từ Microsoft Store hoặc dùng bản Portable.", checkedAt: Date.now() });
         return;
       }
       if (!response.ok) throw new Error("Release unavailable");
