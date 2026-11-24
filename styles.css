@@ -181,7 +181,10 @@ a:focus-visible, button:focus-visible, [tabindex]:focus-visible { outline: 3px s
 .dialog-content .download-action { position: sticky; bottom: 0; margin: 0 -48px -40px; padding: 20px 48px; background: #fff; box-shadow: 0 -8px 16px rgb(255 255 255 / .9); }
 dialog { border: 1px solid #e1e4eb; background: #fff; color: var(--ink); border-radius: 28px; padding: 0; }
 dialog::backdrop { background: rgb(19 23 34 / .4); backdrop-filter: blur(8px); }
-#detail-dialog { width: min(860px, calc(100vw - 40px)); max-height: min(90svh, 1000px); overflow-y: auto; overscroll-behavior: contain; }
+#detail-dialog { width: min(860px, calc(100vw - 40px)); max-height: min(90svh, 1000px); overflow: hidden; }
+#detail-dialog[open] { display: flex; flex-direction: column; }
+#detail-dialog > .dialog-toolbar { flex: none; }
+#detail-dialog > .dialog-content { min-height: 0; overflow-y: auto; overscroll-behavior: contain; scrollbar-width: thin; scrollbar-color: #b5b8bf transparent; }
 .dialog-toolbar, .image-dialog-bar { position: sticky; top: 0; z-index: 1; display: flex; justify-content: space-between; align-items: center; gap: 16px; padding: 15px 25px; background: rgb(255 255 255 / .96); border-bottom: 1px solid var(--line); }
 .dialog-toolbar > span { font-size: 14px; color: var(--muted); }
 .close-dialog { display: inline-flex; align-items: center; gap: 14px; min-height: 36px; background: #f1f3f6; border: 0; border-radius: 30px; padding: 6px 17px; font-size: 15px; }

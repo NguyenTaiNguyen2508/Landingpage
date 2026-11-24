@@ -258,7 +258,7 @@ function setupFeatureDetails() {
     host.append(target);
     dialog.setAttribute("aria-labelledby", target.getAttribute("aria-labelledby"));
     dialog.showModal();
-    dialog.scrollTop = 0;
+    host.scrollTop = 0;
     syncModalScroll();
     target.querySelector("h2").focus({ preventScroll: true });
     if (updateHistory) history.pushState(null, "", "#" + target.id);
